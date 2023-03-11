@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  web-ui:
+    container_name: passmgr_web-ui
+    build:
+      context: ../
+      dockerfile: D:\Kajtek\Wszystko\Programowanie\C#\LANPasswordManager\src\docker\Dockerfile.development.aspnetapp
+    ports:
+      - "3000:3000"
+    networks:
+      - passmgr_net
+  sqlserver:
+    container_name: passmgr_sql-server
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=$sql_sa_password
+    ports:
+      - "1433:1433"
+    networks:
+      - passmgr_net
+    volumes:
+      - sqlserver-volume:/var/opt/mssql
+
+
+networks:
+  passmgr_net:
+
+volumes:
+  sqlserver-volume:
