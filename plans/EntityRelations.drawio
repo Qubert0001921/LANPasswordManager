@@ -1,1 +1,209 @@
-<mxfile host="app.diagrams.net" modified="2023-03-05T21:48:18.192Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" etag="oSDwYt-1MRyTEwtdgJ4X" version="21.0.2" type="device"><diagram name="Strona-1" id="SsMu0ikBP70cMyiEJ2qC">7Vtbe5s4EP01fqQfV4EfE+fSptldt9lvt/soQGA1GHmFHNv99ZVAwsZgxzS+NjzZGkloZnSYc5BxzxqM5/cUTkZ/kBAlPVMP5z3rpmeahm3Z/ENYFoXF7YPCEFMcykFLwxP+gaRRl9YpDlFWGcgISRieVI0BSVMUsIoNUkpm1WERSaqrTmCMaoanACZ16784ZKPC6pnu0v4R4XikVjZAv+gZQzVYRpKNYEhmKybrtmcNKCGs+DaeD1AikqfyUsy729BbOkZRynaZcPNPfPvlAX8x/vraf/jbHw6fH140leYXmExlxFdBQKb8koXTbKEykc3wOIEpb10HI5yEj3BBpmLljMHgWbWuR4TiHyRlMOFdBjfwbsrkxjp6ZcSTmMnNwkr5oiEK5aSI98s5hq3a0hc9vyglz+WOmGI+yvj4oUqHXpoeYcaUK2oLRG8Is1G+nmjABMcp/x7w2YgKAw3k+mL52Qgz9DSBgTDMONJFGGysQpQ5RJSh+cbdMco95zcLImPE6IIPkRNcuRHyNrFkc7bEnAEk5kYreDN1ORBKnMfllZdQ4F8kGtogw6gho2eCRGxxiF/415jlkW80ZROYVhAE/p8KrF/7fNPjfLu1gCSEZ/tK3NUUppnK13V+q6ZMi+AYJ4tixBXFAlRlX5bvj+gxjIlcWS6x9OX6U8gH3PMqwj+Gn5VzPCWFf1WfufmignskMU5ficmnu0W5l5Aa3N4Wa0NId5hm7E84Rq3DOpMARL25ZP9vxxAnl+r8EGbZjNDwIy/ulxrDV5Kg1ap191rV2hiJLPBqjZAEmYYFwaUw0YSy0hzPNVAELM2NokjzgAE1EJm65lqh6zh64NseaHLyF6roqXxakzGK6RMUsVJIDIpdvUlJrm8inCRrJn7NAKfxYz7rppQkUqIIASLoH3PheCUXYGSiNAj0S+FCCYNspc3xo9RJW0GxRdDVZYbUFc6OusJwDqYrnJquEIDv5OZR5aatV/Wm3YQLvQEX5sFwAdroTbFBorAWKVpWg6KwbiwOGyv8eum2PwAA3Ml8X6qy8PcXxeapg91BzbQKcWcmQKYDjND3CyaIXANoHjIizfbdoA+AgxzL7Zhga6FtxwQNd7x7sBu+X7vhlXq759V58ikgaccKR2UFb/0Q4uSsYNbPp864UHas0LHCubNC/7xZwbS2s0Kl0dHDUenBAesPDXW0mLZ1VH6wO34402ALmFclXZtTrUuPfyAK0JHC77jzGNxZcFMb7myshofjTnc7d3Z0eVS6BE6VLo2GQ7byh94KXaqXJvaPEK+jyzMNdt+PU2cYYu14513pgdY/6+0Y8DvjYLc1BzeVWO9gFXbzqWZHv0elX8NYe1oFTh0b+lFPM63uNPNcg1U36QBPRoi+k2C7p9LfgRFbn+g2Vr2DPZVaZm1HUBgjxT2EshGJCcfC7dK6wl0iZcsxj0TkOM/Yd8TYQm4HnDJSzSeaY/ZNTP+g67Zs/5e3nb4j2zdzef28sVCNlEf9TV1GNIp5pqPay3l5a7FylSGimKdNEF5uW8VVz7RCiLwoqIGQ94DAQ35UAkFkaDvv8YSSKZUFZPvTHpcLMdoKoQ0vDVGUQIZfqp7sHyDWSQFSBcdu0NBbQmMNBlGEQNAIg9Dt+7q+ZxjYu8LAOykM7FPCwKjAwP0dcaDU57njAFwMDtaru4O80G7aTs/0LQDegpw94kD9s+NVHBSv5L0BB3LqkOBc725497B8UFOXKByTs9bQVLrxBoC558M3Ryo0OyDzFLrjzQB7W6Hx3h0O3pnw4M3l/yuL8rH8l6p1+xM=</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2023-04-01T18:19:32.414Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="kNU41t-045_iaIS-wj4k" version="21.1.2" type="device">
+  <diagram name="Strona-1" id="SsMu0ikBP70cMyiEJ2qC">
+    <mxGraphModel dx="2876" dy="2306" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-10" value="Account" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="70" y="30" width="167" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-11" value="&lt;div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; font-family: Arial; font-size: 11pt;&quot;&gt;+Id Guid PK&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; font-family: Arial; font-size: 11pt;&quot;&gt;+Login&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt; font-family: Arial;&quot;&gt;+FirstName&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt; font-family: Arial;&quot;&gt;+LastName&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt; font-family: Arial;&quot;&gt;+Email&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt; font-family: Arial;&quot;&gt;+PasswordHash&lt;/span&gt;&lt;br&gt;&lt;span id=&quot;docs-internal-guid-5871ef63-7fff-861a-6f20-73d7550cb486&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;span id=&quot;docs-internal-guid-5871ef63-7fff-861a-6f20-73d7550cb486&quot;&gt;&lt;/span&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="DVgEQJiQ1OR9JTbPPkJv-10" vertex="1">
+          <mxGeometry y="50" width="167" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-15" value="Role" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="400" y="40" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-16" value="&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id Guid PK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Name&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;span id=&quot;docs-internal-guid-e2561dbb-7fff-f716-8e1f-4b7c9665e537&quot;&gt;&lt;/span&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="DVgEQJiQ1OR9JTbPPkJv-15" vertex="1">
+          <mxGeometry y="50" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-19" value="PasswordGroupIcon" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="80" y="300" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-20" value="&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id Guid PK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Name&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;span id=&quot;docs-internal-guid-e2561dbb-7fff-f716-8e1f-4b7c9665e537&quot;&gt;&lt;/span&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="DVgEQJiQ1OR9JTbPPkJv-19" vertex="1">
+          <mxGeometry y="50" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-23" value="PasswordGroupPasswordGroup" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;swimlaneFillColor=#FFFFFF;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="550" y="390" width="243" height="120" as="geometry">
+            <mxRectangle x="584" y="390" width="240" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-24" value="&lt;div&gt;&lt;font color=&quot;#000000&quot; face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id Guid PK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot; face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+ParentPasswordGroupId Guid FK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot; face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+ChildPasswordGroupId Guid FK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;span id=&quot;docs-internal-guid-e2561dbb-7fff-f716-8e1f-4b7c9665e537&quot;&gt;&lt;/span&gt;&lt;/font&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="DVgEQJiQ1OR9JTbPPkJv-23" vertex="1">
+          <mxGeometry y="50" width="243" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-27" value="PasswordGroup" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#182E3E;fontColor=#FFFFFF;strokeColor=#FFFFFF;swimlaneFillColor=#FFFFFF;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="650" y="140" width="230" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-28" value="&lt;div&gt;&lt;font color=&quot;#000000&quot; face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id Guid PK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot; face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Name&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot; face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+PasswordGroupIconId Guid FK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="DVgEQJiQ1OR9JTbPPkJv-27" vertex="1">
+          <mxGeometry y="50" width="230" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-29" value="Password" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="110" y="465" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-30" value="&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id Guid PK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+PasswordCipher&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+PasswordGroupId Guid FK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;span id=&quot;docs-internal-guid-e2561dbb-7fff-f716-8e1f-4b7c9665e537&quot;&gt;&lt;/span&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="DVgEQJiQ1OR9JTbPPkJv-29" vertex="1">
+          <mxGeometry y="50" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.004;exitY=0.595;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;exitPerimeter=0;strokeColor=#23445D;labelBackgroundColor=none;fontColor=default;" parent="1" source="DVgEQJiQ1OR9JTbPPkJv-28" target="DVgEQJiQ1OR9JTbPPkJv-20" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;strokeColor=#23445D;labelBackgroundColor=none;fontColor=default;" parent="1" source="DVgEQJiQ1OR9JTbPPkJv-24" target="DVgEQJiQ1OR9JTbPPkJv-28" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;strokeColor=#23445D;labelBackgroundColor=none;fontColor=default;" parent="1" source="DVgEQJiQ1OR9JTbPPkJv-30" target="DVgEQJiQ1OR9JTbPPkJv-28" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;strokeColor=#23445D;entryX=0;entryY=0.25;entryDx=0;entryDy=0;labelBackgroundColor=none;fontColor=default;" parent="1" source="DVgEQJiQ1OR9JTbPPkJv-11" target="DVgEQJiQ1OR9JTbPPkJv-16" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;strokeColor=#23445D;labelBackgroundColor=none;fontColor=default;" parent="1" source="DVgEQJiQ1OR9JTbPPkJv-28" target="DVgEQJiQ1OR9JTbPPkJv-16" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DVgEQJiQ1OR9JTbPPkJv-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;strokeColor=#23445D;labelBackgroundColor=none;fontColor=default;" parent="1" source="DVgEQJiQ1OR9JTbPPkJv-24" target="DVgEQJiQ1OR9JTbPPkJv-28" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-1" value="PasswordGroupRole" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;swimlaneFillColor=#FFFFFF;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="885" y="300" width="243" height="120" as="geometry">
+            <mxRectangle x="584" y="390" width="240" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-2" value="&lt;div&gt;&lt;font color=&quot;#000000&quot; face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id Guid PK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot; face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+PasswordGroupId Guid FK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot; face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+RoleId Guid FK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;span id=&quot;docs-internal-guid-e2561dbb-7fff-f716-8e1f-4b7c9665e537&quot;&gt;&lt;/span&gt;&lt;/font&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="YtCUEEjZ9nsWTqC4YIla-1" vertex="1">
+          <mxGeometry y="50" width="243" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.009;entryY=0.185;entryDx=0;entryDy=0;entryPerimeter=0;labelBackgroundColor=none;strokeColor=#23445D;fontColor=default;" parent="1" source="YtCUEEjZ9nsWTqC4YIla-4" target="YtCUEEjZ9nsWTqC4YIla-11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-4" value="Account" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="180" y="-743" width="167" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-5" value="&lt;div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; font-family: Arial; font-size: 11pt;&quot;&gt;+Id Guid&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; font-family: Arial; font-size: 11pt;&quot;&gt;+Login&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt; font-family: Arial;&quot;&gt;+FirstName&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt; font-family: Arial;&quot;&gt;+LastName&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt; font-family: Arial;&quot;&gt;+Email&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt; font-family: Arial;&quot;&gt;+Password&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt; font-family: Arial;&quot;&gt;+Roles List&lt;/span&gt;&lt;/div&gt;&lt;span id=&quot;docs-internal-guid-5871ef63-7fff-861a-6f20-73d7550cb486&quot;&gt;&lt;/span&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="YtCUEEjZ9nsWTqC4YIla-4" vertex="1">
+          <mxGeometry y="50" width="167" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-6" value="Role" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="420" y="-800" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-7" value="&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Name&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;span id=&quot;docs-internal-guid-e2561dbb-7fff-f716-8e1f-4b7c9665e537&quot;&gt;&lt;/span&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="YtCUEEjZ9nsWTqC4YIla-6" vertex="1">
+          <mxGeometry y="50" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-8" value="PasswordGroupPasswordGroup" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1100" y="-420" width="243" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-9" value="&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id Guid&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+ParentPasswordGroup&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+ChildPasswordGroup&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;span id=&quot;docs-internal-guid-e2561dbb-7fff-f716-8e1f-4b7c9665e537&quot;&gt;&lt;/span&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="YtCUEEjZ9nsWTqC4YIla-8" vertex="1">
+          <mxGeometry y="50" width="243" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-10" value="MainPasswordGroup" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="827" y="-732" width="230" height="234" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-11" value="&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Name&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+AccessRoles List&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Passwords List&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+ChildPasswordGroups&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="YtCUEEjZ9nsWTqC4YIla-10" vertex="1">
+          <mxGeometry y="50" width="230" height="184" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-12" value="Password" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="240" y="-335" width="200" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-13" value="&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id Guid PK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+PasswordCipher&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+PasswordGroup&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;span id=&quot;docs-internal-guid-e2561dbb-7fff-f716-8e1f-4b7c9665e537&quot;&gt;&lt;/span&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="YtCUEEjZ9nsWTqC4YIla-12" vertex="1">
+          <mxGeometry y="50" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-16" value="Creates PasswordGroup" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="390" y="-630" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.043;entryY=1.005;entryDx=0;entryDy=0;entryPerimeter=0;labelBackgroundColor=none;strokeColor=#23445D;fontColor=default;" parent="1" source="YtCUEEjZ9nsWTqC4YIla-13" target="YtCUEEjZ9nsWTqC4YIla-11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-18" value="Lives in PasswordGroup" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="640" y="-300" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.85;entryY=-0.042;entryDx=0;entryDy=0;entryPerimeter=0;labelBackgroundColor=none;strokeColor=#23445D;fontColor=default;" parent="1" source="YtCUEEjZ9nsWTqC4YIla-11" target="YtCUEEjZ9nsWTqC4YIla-12" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="410" y="-510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-20" value="Create Password in specific PasswordGroup" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="570" y="-550" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-21" value="Has Role" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="310" y="-800" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#23445D;fontColor=default;" parent="1" source="YtCUEEjZ9nsWTqC4YIla-5" target="YtCUEEjZ9nsWTqC4YIla-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#23445D;fontColor=default;" parent="1" source="YtCUEEjZ9nsWTqC4YIla-11" target="YtCUEEjZ9nsWTqC4YIla-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-24" value="Has Multiple Roles" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="650" y="-800" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-25" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;Predefined Roles:&lt;/b&gt;&lt;br&gt;-Administrator&lt;br&gt;-User&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="90" y="-900" width="190" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-27" value="RegularPasswordGroup" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="2004" y="-683" width="230" height="234" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-28" value="&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Name&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Passwords List&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+ParentPasswordGroup&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="YtCUEEjZ9nsWTqC4YIla-27" vertex="1">
+          <mxGeometry y="50" width="230" height="184" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-29" value="MainPasswordGroup" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1550" y="-710" width="230" height="234" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-30" value="&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Name&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+AccessRoles List&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Passwords List&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="YtCUEEjZ9nsWTqC4YIla-29" vertex="1">
+          <mxGeometry y="50" width="230" height="184" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#23445D;fontColor=default;" parent="1" target="YtCUEEjZ9nsWTqC4YIla-27" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1780.0000000000005" y="-628" as="sourcePoint" />
+            <mxPoint x="1950" y="-567" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-32" value="Have some child" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1800" y="-663" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-33" value="RegularPasswordGroup" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1930" y="-396" width="230" height="234" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-34" value="&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Name&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Passwords List&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+ParentPasswordGroup&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="YtCUEEjZ9nsWTqC4YIla-33" vertex="1">
+          <mxGeometry y="50" width="230" height="184" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;labelBackgroundColor=none;strokeColor=#23445D;fontColor=default;" parent="1" source="YtCUEEjZ9nsWTqC4YIla-30" target="YtCUEEjZ9nsWTqC4YIla-34" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-36" value="Have some child" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1860" y="-459" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-37" value="&lt;b&gt;&lt;font style=&quot;font-size: 22px;&quot;&gt;Second solution&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1550" y="-780" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="YtCUEEjZ9nsWTqC4YIla-38" value="ParentPasswordGroup field refers to Regular and Main" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=15;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="2270" y="-618" width="390" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aeLuO_dcyek8XZshvJgA-1" value="&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;font-size: 21px; background-color: initial;&quot;&gt;PasswordGroupTypes:&lt;/span&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 21px;&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;-Main&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;-Child&lt;/span&gt;&lt;/div&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="294" y="-920" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="aeLuO_dcyek8XZshvJgA-2" value="AccountRole" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#182E3E;fontColor=#FFFFFF;strokeColor=#FFFFFF;swimlaneFillColor=#FFFFFF;labelBackgroundColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1050" y="110" width="230" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="aeLuO_dcyek8XZshvJgA-3" value="&lt;div&gt;&lt;font color=&quot;#000000&quot; face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id Guid PK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot; face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+AccountId Guid FK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot; face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Role Id Guid FK&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="aeLuO_dcyek8XZshvJgA-2" vertex="1">
+          <mxGeometry y="50" width="230" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="2xSPwkqwCPtD4w-Cs2NS-1" value="ChildPasswordGroup" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1080" y="-732" width="230" height="234" as="geometry" />
+        </mxCell>
+        <mxCell id="2xSPwkqwCPtD4w-Cs2NS-2" value="&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Name&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Passwords List&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+ParentPasswordGroup&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+ChildPasswordGroups&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="2xSPwkqwCPtD4w-Cs2NS-1" vertex="1">
+          <mxGeometry y="50" width="230" height="184" as="geometry" />
+        </mxCell>
+        <mxCell id="2xSPwkqwCPtD4w-Cs2NS-4" value="Admin" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="-10" y="-753" width="167" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="2xSPwkqwCPtD4w-Cs2NS-5" value="&lt;div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; font-family: Arial; font-size: 11pt;&quot;&gt;+Id Guid&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; font-family: Arial; font-size: 11pt;&quot;&gt;+Login&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt; font-family: Arial;&quot;&gt;+FirstName&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt; font-family: Arial;&quot;&gt;+LastName&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt; font-family: Arial;&quot;&gt;+Email&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;background-color: transparent; font-size: 11pt; font-family: Arial;&quot;&gt;+Password&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;span id=&quot;docs-internal-guid-5871ef63-7fff-861a-6f20-73d7550cb486&quot;&gt;&lt;/span&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="2xSPwkqwCPtD4w-Cs2NS-4" vertex="1">
+          <mxGeometry y="50" width="167" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="2xSPwkqwCPtD4w-Cs2NS-6" value="PasswordGroup" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="970" y="-1070" width="230" height="234" as="geometry" />
+        </mxCell>
+        <mxCell id="2xSPwkqwCPtD4w-Cs2NS-7" value="&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Id&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Name&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&quot;Arial&quot;&gt;&lt;span style=&quot;font-size: 14.6667px;&quot;&gt;+Passwords List&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;labelBackgroundColor=none;fontColor=#FFFFFF;" parent="2xSPwkqwCPtD4w-Cs2NS-6" vertex="1">
+          <mxGeometry y="50" width="230" height="184" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

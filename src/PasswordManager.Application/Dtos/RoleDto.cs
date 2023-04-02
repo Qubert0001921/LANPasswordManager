@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PasswordManager.Domain.Models;
+namespace PasswordManager.Application.Dtos;
 
-public class PasswordGroupIcon
+public class RoleDto
 {
-    public string Id { get; set; }
+    public Guid Id { get; set; }
     public string Name { get; set; }
 }

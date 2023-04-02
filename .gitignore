@@ -5,6 +5,9 @@
 
 #CUSTOM
 .env
+.editorconfig
+/.vscode
+/plans
 
 # User-specific files
 *.rsuser
