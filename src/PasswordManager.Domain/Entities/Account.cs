@@ -7,7 +7,7 @@ namespace PasswordManager.Domain.Entities;
 
 public class Account
 {
-    public Account(Guid id, string login, string firstName, string lastName, string email, string password, List<Role> roles)
+    private Account(Guid id, string login, string firstName, string lastName, string email, string password, List<Role> roles, bool isAdmin)
     {
         Id = id;
         Login = login;
@@ -16,19 +16,40 @@ public class Account
         Email = email;
         Password = password;
         _roles = roles;
-        IsAdmin = false;
+        IsAdmin = isAdmin;
     }
 
-    public Account(Guid id, string login, string firstName, string lastName, string email, string password)
+    public static Account CreateAdminAccount(Guid id, string login, string firstName, string lastName, string email, string password)
     {
-        Id = id;
-        Login = login;
-        FirstName = firstName;
-        LastName = lastName;
-        Email = email;
-        Password = password;
-        _roles = new List<Role>();
-        IsAdmin = true;
+        return new Account(
+            id,
+            login,
+            firstName,
+            lastName,
+            email,
+            password,
+            new List<Role>(),
+            true
+        );
+    }
+
+    public static Account CreateUserAccount(Guid id, string login, string firstName, string lastName, string email, string password, IEnumerable<Role> roles)
+    {
+        if(!roles.Any())
+        {
+            throw new Exception("User account must have at least one role");
+        }
+
+        return new Account(
+            id,
+            login,
+            firstName,
+            lastName,
+            email,
+            password,
+            roles.ToList(),
+            false
+        );
     }
 
     public Guid Id { get; private init; }

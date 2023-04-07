@@ -7,9 +7,10 @@ namespace PasswordManager.Domain.Repositories;
 
 public interface IBaseRepository<TEntity, TID>
 {
-    Task<TEntity> GetById(TID id);
-    IEnumerable<TEntity> GetAll();
-    Task CreateOne(TEntity entity);
-    Task UpdateOne(TEntity entity);
-    Task RemoveOneById(TID id);
+    Task<TEntity> GetByIdAsync(TID id);
+    Task<IEnumerable<TEntity>> GetAllAsync();
+    Task CreateOneAsync(TEntity entity);
+    Task UpdateOneAsync(TEntity entity);
+    Task RemoveOneByIdAsync(TID id);
+    Task RemoveRangeByIdsAsync(IEnumerable<TID> ids);
 }

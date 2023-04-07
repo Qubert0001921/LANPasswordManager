@@ -9,5 +9,8 @@ namespace PasswordManager.Domain.Repositories;
 
 public interface IAccountRepository : IBaseRepository<Account, Guid>
 {
-    
+    Task<IEnumerable<Account>> GetAllAdminAccountsAsync();
+    Task<Account> GetAdminAccountByIdAsync(Guid id);
+    Task<Account> GetAccountByLoginAsync(string login);
+    Task<Account> GetUserAccountByIdAsync(Guid id);
 }

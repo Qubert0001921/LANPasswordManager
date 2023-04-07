@@ -8,6 +8,13 @@ namespace PasswordManager.Domain.Repositories;
 
 public interface IPasswordGroupRepository : IBaseRepository<PasswordGroup, Guid>
 {
-    Task AddPasswordToPasswordGroup(PasswordGroup passwordGroup, Password password);
-    Task RemovePasswordFromPasswordGroup(PasswordGroup passwordGroup, Password password);
+    Task AddPasswordToPasswordGroupAsync(PasswordGroup passwordGroup, Password password);
+    Task RemovePasswordFromPasswordGroupAsync(PasswordGroup passwordGroup, Password password);
+    Task<IEnumerable<PasswordGroup>> GetChildrenOfPasswordGroupAsync(PasswordGroup passwordGroup);
+
+    Task<IEnumerable<PasswordGroup>> GetAllChildPasswordGroupsAsync();
+    Task<IEnumerable<PasswordGroup>> GetAllMainPasswordGroupsAsync();
+    
+    Task<PasswordGroup> GetChildPasswordGroupByIdAsync(Guid id);
+    Task<PasswordGroup> GetMainPasswordGroupByIdAsync(Guid id);
 }
