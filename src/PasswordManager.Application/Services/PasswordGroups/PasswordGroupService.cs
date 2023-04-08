@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 
 using PasswordManager.Application.Dtos;
+using PasswordManager.Application.Services.Accounts;
 using PasswordManager.Domain.Entities;
+using PasswordManager.Domain.Exceptions;
 using PasswordManager.Domain.Repositories;
 
 namespace PasswordManager.Application.Services.PasswordGroups;
@@ -16,23 +18,38 @@ public class PasswordGroupService : IPasswordGroupService
     private readonly IPasswordGroupRepository _passwordGroupRepository;
     private readonly IPasswordRepository _passwordRepository;
     private readonly IPasswordGroupHelperService _passwordGroupHelper;
+    private readonly IAccountRepository _accountRepository;
+    private readonly IAccountHelperService _accountHelperService;
     private readonly IMapper _mapper;
 
     public PasswordGroupService(
         IPasswordGroupRepository passwordGroupRepository, 
         IPasswordRepository passwordRepository,
         IPasswordGroupHelperService passwordGroupHelperService,
+        IAccountRepository accountRepository,
+        IAccountHelperService accountHelperService,
         IMapper mapper)
     {
         _passwordGroupRepository = passwordGroupRepository;
         _passwordRepository = passwordRepository;
         _passwordGroupHelper = passwordGroupHelperService;
+        _accountRepository = accountRepository;
+        _accountHelperService = accountHelperService;
         _mapper = mapper;
     }
 
-    public async Task AddPasswordToPasswordGroup(PasswordGroupDto dto, PasswordDto passwordDto)
+    public async Task AddPasswordToPasswordGroup(PasswordGroupDto dto, PasswordDto passwordDto, AccountDto accountDto)
     {
+        var account = await _accountHelperService.CheckIfAccountExists(accountDto.Id);
+        if(account.IsAdmin)
+        {
+            throw new AdminAccountNotAllowedException();
+        }
+
         var passwordGroup = await CheckIfPasswordGroupExists(dto.Id);
+
+        await _passwordGroupHelper.CheckAccountAndPasswordGroupRoles(account, passwordGroup);
+
         var password = new Password(
             passwordDto.Id, 
             passwordDto.PasswordCipher
@@ -45,9 +62,18 @@ public class PasswordGroupService : IPasswordGroupService
         await _passwordGroupRepository.AddPasswordToPasswordGroupAsync(passwordGroup, password);
     }
 
-    public async Task RemovePasswordFromPasswordGroup(PasswordGroupDto dto, PasswordDto passwordDto)
+    public async Task RemovePasswordFromPasswordGroup(PasswordGroupDto dto, PasswordDto passwordDto, AccountDto accountDto)
     {
+        var account = await _accountHelperService.CheckIfAccountExists(accountDto.Id);
+        if(account.IsAdmin)
+        {
+            throw new AdminAccountNotAllowedException();
+        }
+
         var passwordGroup = await CheckIfPasswordGroupExists(dto.Id);
+
+        await _passwordGroupHelper.CheckAccountAndPasswordGroupRoles(account, passwordGroup);
+
         var password = await _passwordGroupHelper.CheckIfPasswordExists(passwordDto.Id);
 
         passwordGroup.RemovePassword(password);
@@ -58,11 +84,7 @@ public class PasswordGroupService : IPasswordGroupService
 
     public async Task<List<RoleDto>> GetAccessRolesByPasswordGroupId(Guid id)
     {
-        var passwordGroup = await _passwordGroupRepository.GetByIdAsync(id);
-        if(passwordGroup is null)
-        {
-            throw new Exception("Password group doesn't exist");
-        }
+        var passwordGroup = await CheckIfPasswordGroupExists(id);
 
         if(passwordGroup.PasswordGroupType == PasswordGroupType.Main)
         {
@@ -72,7 +94,7 @@ public class PasswordGroupService : IPasswordGroupService
 
         if(passwordGroup.ParentPasswordGroup is null)
         {
-            throw new Exception("Parent password group doesn't exist");
+            throw new ParentPasswordGroupNotFoundException();
         }
 
         var result = await GetAccessRolesByPasswordGroupId(passwordGroup.ParentPasswordGroup.Id);
@@ -82,14 +104,16 @@ public class PasswordGroupService : IPasswordGroupService
 
     public async Task<IEnumerable<PasswordDto>> GetPasswordsOfPasswordGroup(PasswordGroupDto passwordGroupDto, AccountDto accountDto)
     {
-        var account = await _passwordGroupHelper.CheckIfAccountExists(accountDto.Id);
-        _passwordGroupHelper.ThrowIfNotAdmin(account, "Admin account musn't get passwords of password group");
-
-        var passwordGroup = await _passwordGroupRepository.GetByIdAsync(passwordGroupDto.Id);
-        if(passwordGroup is null)
+        var account = await _accountHelperService.CheckIfAccountExists(accountDto.Id);
+    
+        if(account.IsAdmin)
         {
-            throw new Exception("Password group doesn't exist");
+            throw new AdminAccountNotAllowedException();
         }
+
+        var passwordGroup = await CheckIfPasswordGroupExists(passwordGroupDto.Id);
+
+        await _passwordGroupHelper.CheckAccountAndPasswordGroupRoles(account, passwordGroup);
 
         var passwordDtos = _mapper.Map<IEnumerable<PasswordDto>>(passwordGroup.Passwords);
         return passwordDtos;
@@ -109,7 +133,7 @@ public class PasswordGroupService : IPasswordGroupService
         var passwordGroup = await _passwordGroupRepository.GetByIdAsync(id);
         if(passwordGroup is null)
         {
-            throw new Exception("Password group doesn't exist");
+            throw new PasswordGroupNotFoundException();
         }
         return passwordGroup;
     }

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 
 using PasswordManager.Application.Dtos;
+using PasswordManager.Application.Services.Accounts;
 using PasswordManager.Domain.Entities;
+using PasswordManager.Domain.Exceptions;
 using PasswordManager.Domain.Repositories;
 
 namespace PasswordManager.Application.Services.PasswordGroups;
@@ -17,6 +19,8 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
     private readonly IAccountRepository _accountRepository;
     private readonly IPasswordRepository _passwordRepository;
     private readonly IPasswordGroupHelperService _passwordGroupHelper;
+    private readonly IPasswordGroupService _passwordGroupService;
+    private readonly IAccountHelperService _accountHelperService;
     private readonly IMapper _mapper;
 
     public ChildPasswordGroupService(
@@ -24,12 +28,16 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
         IAccountRepository accountRepository,
         IPasswordRepository passwordRepository,
         IPasswordGroupHelperService passwordGroupHelperService,
+        IPasswordGroupService passwordGroupService,
+        IAccountHelperService accountHelperService,
         IMapper mapper)
     {
         _passwordGroupRepository = passwordGroupRepository;
         _accountRepository = accountRepository;
         _passwordRepository = passwordRepository;
         _passwordGroupHelper = passwordGroupHelperService;
+        _passwordGroupService = passwordGroupService;
+        _accountHelperService = accountHelperService;
         _mapper = mapper;
     }
 
@@ -42,6 +50,22 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
             throw new Exception("Assigned parent password group doesn't exist");
         }
 
+        var account = await _accountRepository.GetByIdAsync(creator.Id);
+        if(account is null)
+        {
+            throw new Exception("Account doesn't exist");
+        }
+
+        if(!account.IsAdmin)
+        {
+            var hasAccessRole = await _passwordGroupHelper.HasAccountPasswordGroupRole(account, parentPasswordGroup); 
+
+            if(!hasAccessRole)
+            {
+                throw new Exception("Cannot create child password group because user account doesn't have appropriate role");
+            }
+        }      
+
         var passwords = _mapper.Map<List<Password>>(dto.Passwords);
         var childPasswordGroup = PasswordGroup.CreateChildPasswordGroup(
             dto.Name,
@@ -52,6 +76,8 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
         await _passwordGroupRepository.CreateOneAsync(childPasswordGroup);
     }
 
+
+    // Is it necessary??
     public async Task<IEnumerable<PasswordGroupDto>> GetAllChildPasswordGroups()
     {
         var passwordGroups = await _passwordGroupRepository.GetAllChildPasswordGroupsAsync();
@@ -59,6 +85,7 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
         return models;
     }
 
+    // Is it necessary??
     public async Task<PasswordGroupDto> GetChildPasswordGroupById(Guid id)
     {
         var passwordGroup = await _passwordGroupRepository.GetChildPasswordGroupByIdAsync(id);
@@ -66,20 +93,27 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
         return model;
     }
 
-    public async Task MoveChildPasswordGroup(PasswordGroupDto childDto, PasswordGroupDto parentDto)
+    public async Task MoveChildPasswordGroup(PasswordGroupDto childDto, PasswordGroupDto parentDto, AccountDto accountDto)
     {
+        var account = await _accountHelperService.CheckIfAccountExists(accountDto.Id);
+
         var existingChild = await _passwordGroupRepository.GetChildPasswordGroupByIdAsync(childDto.Id);
 
         if(existingChild is null)
         {
-            throw new Exception("Child password group doesn't exist");
+            throw new PasswordGroupNotFoundException();
         }
 
         var existingParent = await _passwordGroupRepository.GetByIdAsync(parentDto.Id);
 
         if(existingParent is null)
         {
-            throw new Exception("Parent password group doesn't exist");
+            throw new ParentPasswordGroupNotFoundException();
+        }
+
+        if(!account.IsAdmin)
+        {
+            await _passwordGroupHelper.CheckAccountAndPasswordGroupRoles(account, existingParent);
         }
 
         existingChild.MovePasswordGroup(existingParent);
@@ -92,7 +126,7 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
         var childPasswordGroup = await _passwordGroupRepository.GetChildPasswordGroupByIdAsync(dto.Id);
         if(childPasswordGroup is null)
         {
-            throw new Exception("Child password group doesn't exist");
+            throw new PasswordGroupNotFoundException();
         }
 
         var allChildren = await _passwordGroupHelper.GetAllChildrenOfPasswordGroup(childPasswordGroup);

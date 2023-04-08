@@ -47,7 +47,7 @@ public class UserAccountService : IUserAccountService
         var existingAccount = await _accountRepository.GetAccountByLoginAsync(dto.Login);
         if(existingAccount is not null)
         {
-            throw new Exception("Account login id already taken");
+            throw new Exception("Account login is already taken");
         }
 
         var userRoles = _mapper.Map<IEnumerable<Role>>(dto.Roles);

@@ -38,8 +38,7 @@ public class MainPasswordGroupService : IMainPasswordGroupService
 
     public async Task AddAccessRoleToMainPasswordGroup(PasswordGroupDto mainDto, RoleDto roleDto, AccountDto accountDto)
     {
-        var account = await _passwordGroupHelper.CheckIfAccountExists(accountDto.Id);
-        _passwordGroupHelper.ThrowIfNotAdmin(account, "Only admin account can add access role to password group");
+        var account = await CheckIfAdminAccountExists(accountDto);
 
         var passwordGroup = await _passwordGroupRepository.GetMainPasswordGroupByIdAsync(mainDto.Id);
         if(passwordGroup is null)
@@ -60,7 +59,7 @@ public class MainPasswordGroupService : IMainPasswordGroupService
 
     public async Task CreateMainPasswordGroup(PasswordGroupDto dto, AccountDto creator)
     {
-        var existingCreator = await _passwordGroupHelper.CheckIfAccountExists(creator.Id);
+        var existingCreator = await CheckIfAdminAccountExists(creator);
 
         var passwords = _mapper.Map<List<Password>>(dto.Passwords);
         var accessRoles = _mapper.Map<List<Role>>(dto.AccessRoles);
@@ -85,8 +84,7 @@ public class MainPasswordGroupService : IMainPasswordGroupService
 
     public async Task RemoveAccessRoleFromMainPasswordGroup(PasswordGroupDto mainDto, RoleDto roleDto, AccountDto accountDto)
     {
-        var account = await _passwordGroupHelper.CheckIfAccountExists(accountDto.Id);
-        _passwordGroupHelper.ThrowIfNotAdmin(account, "Only admin account can remove access role from password group");
+        var account = await CheckIfAdminAccountExists(accountDto);
 
         var passwordGroup = await _passwordGroupRepository.GetMainPasswordGroupByIdAsync(mainDto.Id);
         if(passwordGroup is null)
@@ -107,9 +105,7 @@ public class MainPasswordGroupService : IMainPasswordGroupService
 
     public async Task RemoveMainPasswordGroup(PasswordGroupDto dto, AccountDto accountDto)
     {
-        var account = await _passwordGroupHelper.CheckIfAccountExists(accountDto.Id);
-
-        _passwordGroupHelper.ThrowIfNotAdmin(account, "Only admin account can remove main password group");
+        var account = await CheckIfAdminAccountExists(accountDto);
 
         var passwordGroup = await _passwordGroupRepository.GetMainPasswordGroupByIdAsync(dto.Id);
         if(passwordGroup is null)
@@ -129,5 +125,21 @@ public class MainPasswordGroupService : IMainPasswordGroupService
 
         // Removing the password group
         await _passwordGroupRepository.RemoveOneByIdAsync(passwordGroup.Id);
+    }
+
+    private async Task<Account> CheckIfAdminAccountExists(AccountDto accountDto)
+    {
+        var account = await _accountRepository.GetByIdAsync(accountDto.Id);
+        if(account is null)
+        {
+            throw new Exception("Account doesn't exist");
+        }
+
+        if(!account.IsAdmin)
+        {
+            throw new Exception("Account must be an admin account");
+        }
+
+        return account;
     }
 }

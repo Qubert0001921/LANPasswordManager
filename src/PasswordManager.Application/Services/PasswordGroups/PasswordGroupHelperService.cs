@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using AutoMapper;
+
 using PasswordManager.Application.Dtos;
 using PasswordManager.Domain.Entities;
+using PasswordManager.Domain.Exceptions;
 using PasswordManager.Domain.Repositories;
 
 namespace PasswordManager.Application.Services.PasswordGroups;
@@ -14,27 +17,22 @@ public class PasswordGroupHelperService : IPasswordGroupHelperService
     private readonly IAccountRepository _accountRepository;
     private readonly IPasswordRepository _passwordRepository;
     private readonly IPasswordGroupRepository _passwordGroupRepository;
+    private readonly IPasswordGroupService _passwordGroupService;
+    private readonly IMapper _mapper;
 
     public PasswordGroupHelperService(
         IAccountRepository accountRepository,
         IPasswordRepository passwordRepository,
-        IPasswordGroupRepository passwordGroupRepository
+        IPasswordGroupRepository passwordGroupRepository,
+        IPasswordGroupService passwordGroupService,
+        IMapper mapper
     )
     {
         _accountRepository = accountRepository;
         _passwordRepository = passwordRepository;
         _passwordGroupRepository = passwordGroupRepository;
-    }
-
-    public async Task<Account> CheckIfAccountExists(Guid id)
-    {
-        var account = await _accountRepository.GetByIdAsync(id);
-        if(account is null)
-        {
-            throw new Exception("Account doesn't exist");
-        }
-
-        return account;
+        _passwordGroupService = passwordGroupService;
+        _mapper = mapper;
     }
 
     public async Task<IEnumerable<Guid>> GetAllChildrenIdsOfPasswordGroup(PasswordGroup passwordGroup)
@@ -96,5 +94,43 @@ public class PasswordGroupHelperService : IPasswordGroupHelperService
             throw new Exception("Password doesn't exist");
         }
         return password;
+    }
+
+    public async Task<bool> HasAccountPasswordGroupRole(Account account, PasswordGroup passwordGroup)
+    {
+        var accessRoleModels = await _passwordGroupService.GetAccessRolesByPasswordGroupId(passwordGroup.Id);
+        var accessRoles = _mapper.Map<List<Role>>(accessRoleModels);
+        var hasAccessRole = false;
+
+        foreach (var role in account.Roles)
+        {
+            if(accessRoles.Contains(role))
+            {
+                hasAccessRole = true;
+                break;
+            }
+        }  
+
+        return hasAccessRole;
+    }
+
+    public async Task CheckAccountAndPasswordGroupRoles(Account account, PasswordGroup passwordGroup)
+    {
+        var hasAccessRole = await HasAccountPasswordGroupRole(account, passwordGroup);
+        if(!hasAccessRole)
+        {
+            throw new AccountPasswordGroupRolesInconsistencyException();
+        }
+    }
+
+    public async Task<PasswordGroup> CheckIfPasswordGroupExists(Guid id)
+    {
+        var passwordGroup = await _passwordGroupRepository.GetByIdAsync(id);
+        if(passwordGroup is null)
+        {
+            throw new PasswordGroupNotFoundException();
+        }
+
+        return passwordGroup;
     }
 }
