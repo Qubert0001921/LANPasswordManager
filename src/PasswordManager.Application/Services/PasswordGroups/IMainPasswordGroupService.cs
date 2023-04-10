@@ -9,10 +9,10 @@ namespace PasswordManager.Application.Services.PasswordGroups;
 
 public interface IMainPasswordGroupService
 {
-    Task CreateMainPasswordGroup(PasswordGroupDto dto, AccountDto creator);
-    Task RemoveMainPasswordGroup(PasswordGroupDto dto, AccountDto account);
-    Task AddAccessRoleToMainPasswordGroup(PasswordGroupDto mainDto, RoleDto roleDto, AccountDto accountDto);
-    Task RemoveAccessRoleFromMainPasswordGroup(PasswordGroupDto mainDto, RoleDto roleDto, AccountDto accountDto);
+    Task CreateMainPasswordGroup(PasswordGroupDto dto, Guid accountId);
+    Task RemoveMainPasswordGroup(Guid passwordGroupId, Guid accountId);
+    Task AddAccessRoleToMainPasswordGroup(Guid mainPasswordGroupId, RoleDto roleDto, Guid accountId);
+    Task RemoveAccessRoleFromMainPasswordGroup(PasswordGroupDto mainDto, RoleDto roleDto, Guid accountId);
     Task<PasswordGroupDto?> GetMainPasswordGroupById(Guid id);
     Task<IEnumerable<PasswordGroupDto>> GetAllMainPasswordGroups();
 }

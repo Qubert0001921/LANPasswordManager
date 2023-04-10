@@ -48,7 +48,11 @@ public class PasswordGroupService : IPasswordGroupService
 
         var passwordGroup = await CheckIfPasswordGroupExists(dto.Id);
 
-        await _passwordGroupHelper.CheckAccountAndPasswordGroupRoles(account, passwordGroup);
+        var hasAccountRoles = await _passwordGroupHelper.HasAccountPasswordGroupRole(account, passwordGroup);
+        if(!hasAccountRoles)
+        {
+            throw new AccountPasswordGroupRolesInconsistencyException();
+        }
 
         var password = new Password(
             passwordDto.Id, 
@@ -72,9 +76,17 @@ public class PasswordGroupService : IPasswordGroupService
 
         var passwordGroup = await CheckIfPasswordGroupExists(dto.Id);
 
-        await _passwordGroupHelper.CheckAccountAndPasswordGroupRoles(account, passwordGroup);
+        var hasAccountRoles = await _passwordGroupHelper.HasAccountPasswordGroupRole(account, passwordGroup);
+        if(!hasAccountRoles)
+        {
+            throw new AccountPasswordGroupRolesInconsistencyException();
+        }
 
-        var password = await _passwordGroupHelper.CheckIfPasswordExists(passwordDto.Id);
+        var password = await _passwordRepository.GetByIdAsync(passwordDto.Id);
+        if(password is null)
+        {
+            throw new PasswordNotFoundException();
+        }
 
         passwordGroup.RemovePassword(password);
         
@@ -113,7 +125,11 @@ public class PasswordGroupService : IPasswordGroupService
 
         var passwordGroup = await CheckIfPasswordGroupExists(passwordGroupDto.Id);
 
-        await _passwordGroupHelper.CheckAccountAndPasswordGroupRoles(account, passwordGroup);
+        var hasAccountRoles = await _passwordGroupHelper.HasAccountPasswordGroupRole(account, passwordGroup);
+        if(!hasAccountRoles)
+        {
+            throw new AccountPasswordGroupRolesInconsistencyException();
+        }
 
         var passwordDtos = _mapper.Map<IEnumerable<PasswordDto>>(passwordGroup.Passwords);
         return passwordDtos;

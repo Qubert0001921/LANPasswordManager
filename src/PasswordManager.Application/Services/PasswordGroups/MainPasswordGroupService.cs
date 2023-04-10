@@ -7,6 +7,7 @@ using AutoMapper;
 
 using PasswordManager.Application.Dtos;
 using PasswordManager.Domain.Entities;
+using PasswordManager.Domain.Exceptions;
 using PasswordManager.Domain.Repositories;
 
 namespace PasswordManager.Application.Services.PasswordGroups;
@@ -36,20 +37,20 @@ public class MainPasswordGroupService : IMainPasswordGroupService
         _mapper = mapper;
     }
 
-    public async Task AddAccessRoleToMainPasswordGroup(PasswordGroupDto mainDto, RoleDto roleDto, AccountDto accountDto)
+    public async Task AddAccessRoleToMainPasswordGroup(Guid mainPasswordGroupId, RoleDto roleDto, Guid accountId)
     {
-        var account = await CheckIfAdminAccountExists(accountDto);
+        var account = await CheckAdminAccount(accountId);
 
-        var passwordGroup = await _passwordGroupRepository.GetMainPasswordGroupByIdAsync(mainDto.Id);
+        var passwordGroup = await _passwordGroupRepository.GetMainPasswordGroupByIdAsync(mainPasswordGroupId);
         if(passwordGroup is null)
         {
-            throw new Exception("Password group doesn't exist");
+            throw new PasswordGroupNotFoundException();
         }
 
         var role = await _roleRepository.GetByIdAsync(roleDto.Id);
         if(role is null)
         {
-            throw new Exception("Role doesn't exist");
+            throw new RoleNotFoundException();
         }
 
         passwordGroup.AddAccessRole(role);
@@ -57,9 +58,9 @@ public class MainPasswordGroupService : IMainPasswordGroupService
         await _passwordGroupRepository.UpdateOneAsync(passwordGroup);
     }
 
-    public async Task CreateMainPasswordGroup(PasswordGroupDto dto, AccountDto creator)
+    public async Task CreateMainPasswordGroup(PasswordGroupDto dto, Guid accountId)
     {
-        var existingCreator = await CheckIfAdminAccountExists(creator);
+        var existingCreator = await CheckAdminAccount(accountId);
 
         var passwords = _mapper.Map<List<Password>>(dto.Passwords);
         var accessRoles = _mapper.Map<List<Role>>(dto.AccessRoles);
@@ -82,20 +83,20 @@ public class MainPasswordGroupService : IMainPasswordGroupService
         return model;
     }
 
-    public async Task RemoveAccessRoleFromMainPasswordGroup(PasswordGroupDto mainDto, RoleDto roleDto, AccountDto accountDto)
+    public async Task RemoveAccessRoleFromMainPasswordGroup(PasswordGroupDto mainDto, RoleDto roleDto, Guid accountId)
     {
-        var account = await CheckIfAdminAccountExists(accountDto);
+        var account = await CheckAdminAccount(accountId);
 
         var passwordGroup = await _passwordGroupRepository.GetMainPasswordGroupByIdAsync(mainDto.Id);
         if(passwordGroup is null)
         {
-            throw new Exception("Password group doesn't exist");
+            throw new PasswordGroupNotFoundException();
         }
 
         var role = await _roleRepository.GetByIdAsync(roleDto.Id);
         if(role is null)
         {
-            throw new Exception("Role doesn't exist");
+            throw new RoleNotFoundException();
         }
 
         passwordGroup.RemoveAccessRole(role);
@@ -103,14 +104,14 @@ public class MainPasswordGroupService : IMainPasswordGroupService
         await _passwordGroupRepository.UpdateOneAsync(passwordGroup);
     }
 
-    public async Task RemoveMainPasswordGroup(PasswordGroupDto dto, AccountDto accountDto)
+    public async Task RemoveMainPasswordGroup(Guid passwordGroupId, Guid accountId)
     {
-        var account = await CheckIfAdminAccountExists(accountDto);
+        var account = await CheckAdminAccount(accountId);
 
-        var passwordGroup = await _passwordGroupRepository.GetMainPasswordGroupByIdAsync(dto.Id);
+        var passwordGroup = await _passwordGroupRepository.GetMainPasswordGroupByIdAsync(passwordGroupId);
         if(passwordGroup is null)
         {
-            throw new Exception("password group doesn't exist");
+            throw new PasswordGroupNotFoundException();
         }
 
         var allChildren = await _passwordGroupHelper.GetAllChildrenOfPasswordGroup(passwordGroup);
@@ -127,17 +128,17 @@ public class MainPasswordGroupService : IMainPasswordGroupService
         await _passwordGroupRepository.RemoveOneByIdAsync(passwordGroup.Id);
     }
 
-    private async Task<Account> CheckIfAdminAccountExists(AccountDto accountDto)
+    private async Task<Account> CheckAdminAccount(Guid accountId)
     {
-        var account = await _accountRepository.GetByIdAsync(accountDto.Id);
+        var account = await _accountRepository.GetByIdAsync(accountId);
         if(account is null)
         {
-            throw new Exception("Account doesn't exist");
+            throw new AccountNotFoundException();
         }
 
         if(!account.IsAdmin)
         {
-            throw new Exception("Account must be an admin account");
+            throw new AdminPermissionRequiredException();
         }
 
         return account;

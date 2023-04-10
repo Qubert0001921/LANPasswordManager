@@ -14,5 +14,10 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {         
+        CreateMap<PasswordDto, Password>();
+        CreateMap<Password, PasswordDto>();
+        CreateMap<Role, RoleDto>();
+        CreateMap<RoleDto, Role>();
+        CreateMap<PasswordGroup, PasswordGroupDto>();
     }
 }

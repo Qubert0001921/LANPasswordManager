@@ -113,7 +113,11 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
 
         if(!account.IsAdmin)
         {
-            await _passwordGroupHelper.CheckAccountAndPasswordGroupRoles(account, existingParent);
+            var hasAccountRoles = await _passwordGroupHelper.HasAccountPasswordGroupRole(account, existingParent);
+            if(!hasAccountRoles)
+            {
+                throw new AccountPasswordGroupRolesInconsistencyException();
+            }
         }
 
         existingChild.MovePasswordGroup(existingParent);

@@ -78,24 +78,6 @@ public class PasswordGroupHelperService : IPasswordGroupHelperService
         return allChildrenPasswordIds;
     }
 
-    public void ThrowIfNotAdmin(Account account, string message)
-    {
-        if(!account.IsAdmin)
-        {
-            throw new Exception(message);
-        }
-    }
-
-    public async Task<Password> CheckIfPasswordExists(Guid id)
-    {
-        var password = await _passwordRepository.GetByIdAsync(id);
-        if(password is null)
-        {
-            throw new Exception("Password doesn't exist");
-        }
-        return password;
-    }
-
     public async Task<bool> HasAccountPasswordGroupRole(Account account, PasswordGroup passwordGroup)
     {
         var accessRoleModels = await _passwordGroupService.GetAccessRolesByPasswordGroupId(passwordGroup.Id);
@@ -112,25 +94,5 @@ public class PasswordGroupHelperService : IPasswordGroupHelperService
         }  
 
         return hasAccessRole;
-    }
-
-    public async Task CheckAccountAndPasswordGroupRoles(Account account, PasswordGroup passwordGroup)
-    {
-        var hasAccessRole = await HasAccountPasswordGroupRole(account, passwordGroup);
-        if(!hasAccessRole)
-        {
-            throw new AccountPasswordGroupRolesInconsistencyException();
-        }
-    }
-
-    public async Task<PasswordGroup> CheckIfPasswordGroupExists(Guid id)
-    {
-        var passwordGroup = await _passwordGroupRepository.GetByIdAsync(id);
-        if(passwordGroup is null)
-        {
-            throw new PasswordGroupNotFoundException();
-        }
-
-        return passwordGroup;
     }
 }
