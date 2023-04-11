@@ -35,13 +35,6 @@ public class PasswordGroupHelperService : IPasswordGroupHelperService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<Guid>> GetAllChildrenIdsOfPasswordGroup(PasswordGroup passwordGroup)
-    {
-        var allChildrenPasswordGroup = await GetAllChildrenOfPasswordGroup(passwordGroup);
-        var allChildrenPasswordGroupIds = allChildrenPasswordGroup.Select(childPasswordGroup => childPasswordGroup.Id);
-        return allChildrenPasswordGroupIds;
-    }
-
     public async Task<IEnumerable<PasswordGroup>> GetAllChildrenOfPasswordGroup(PasswordGroup passwordGroup)
     {
         var allChildren = (await _passwordGroupRepository.GetChildrenOfPasswordGroupAsync(passwordGroup)).ToList();
@@ -53,12 +46,6 @@ public class PasswordGroupHelperService : IPasswordGroupHelperService
         }
 
         return allChildren;
-    }
-
-    public async Task<IEnumerable<Guid>> GetAllPasswordIdsOfPasswordGroup(PasswordGroup passwordGroup)
-    {
-        var allChildrenPasswordGroups = (await GetAllChildrenOfPasswordGroup(passwordGroup)).ToList();
-        return GetAllPasswordIdsOfPasswordGroup(passwordGroup, allChildrenPasswordGroups);
     }
 
     public IEnumerable<Guid> GetAllPasswordIdsOfPasswordGroup(PasswordGroup passwordGroup, IEnumerable<PasswordGroup> childrenPasswordGroups)

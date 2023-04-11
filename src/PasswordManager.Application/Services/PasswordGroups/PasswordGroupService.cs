@@ -19,7 +19,6 @@ public class PasswordGroupService : IPasswordGroupService
     private readonly IPasswordRepository _passwordRepository;
     private readonly IPasswordGroupHelperService _passwordGroupHelper;
     private readonly IAccountRepository _accountRepository;
-    private readonly IAccountHelperService _accountHelperService;
     private readonly IMapper _mapper;
 
     public PasswordGroupService(
@@ -27,32 +26,22 @@ public class PasswordGroupService : IPasswordGroupService
         IPasswordRepository passwordRepository,
         IPasswordGroupHelperService passwordGroupHelperService,
         IAccountRepository accountRepository,
-        IAccountHelperService accountHelperService,
         IMapper mapper)
     {
         _passwordGroupRepository = passwordGroupRepository;
         _passwordRepository = passwordRepository;
         _passwordGroupHelper = passwordGroupHelperService;
         _accountRepository = accountRepository;
-        _accountHelperService = accountHelperService;
         _mapper = mapper;
     }
 
     public async Task AddPasswordToPasswordGroup(PasswordGroupDto dto, PasswordDto passwordDto, AccountDto accountDto)
     {
-        var account = await _accountHelperService.CheckIfAccountExists(accountDto.Id);
-        if(account.IsAdmin)
-        {
-            throw new AdminAccountNotAllowedException();
-        }
+        var account = await CheckIfAccountExistsAndThrowIfAdmin(accountDto.Id);
 
         var passwordGroup = await CheckIfPasswordGroupExists(dto.Id);
 
-        var hasAccountRoles = await _passwordGroupHelper.HasAccountPasswordGroupRole(account, passwordGroup);
-        if(!hasAccountRoles)
-        {
-            throw new AccountPasswordGroupRolesInconsistencyException();
-        }
+        await ThrowIfAccountHasNotPasswordGroupRoles(account, passwordGroup);
 
         var password = new Password(
             passwordDto.Id, 
@@ -68,19 +57,11 @@ public class PasswordGroupService : IPasswordGroupService
 
     public async Task RemovePasswordFromPasswordGroup(PasswordGroupDto dto, PasswordDto passwordDto, AccountDto accountDto)
     {
-        var account = await _accountHelperService.CheckIfAccountExists(accountDto.Id);
-        if(account.IsAdmin)
-        {
-            throw new AdminAccountNotAllowedException();
-        }
+        var account = await CheckIfAccountExistsAndThrowIfAdmin(accountDto.Id);
 
         var passwordGroup = await CheckIfPasswordGroupExists(dto.Id);
 
-        var hasAccountRoles = await _passwordGroupHelper.HasAccountPasswordGroupRole(account, passwordGroup);
-        if(!hasAccountRoles)
-        {
-            throw new AccountPasswordGroupRolesInconsistencyException();
-        }
+        await ThrowIfAccountHasNotPasswordGroupRoles(account, passwordGroup);
 
         var password = await _passwordRepository.GetByIdAsync(passwordDto.Id);
         if(password is null)
@@ -116,20 +97,11 @@ public class PasswordGroupService : IPasswordGroupService
 
     public async Task<IEnumerable<PasswordDto>> GetPasswordsOfPasswordGroup(PasswordGroupDto passwordGroupDto, AccountDto accountDto)
     {
-        var account = await _accountHelperService.CheckIfAccountExists(accountDto.Id);
-    
-        if(account.IsAdmin)
-        {
-            throw new AdminAccountNotAllowedException();
-        }
+        var account = await CheckIfAccountExistsAndThrowIfAdmin(accountDto.Id);
 
         var passwordGroup = await CheckIfPasswordGroupExists(passwordGroupDto.Id);
 
-        var hasAccountRoles = await _passwordGroupHelper.HasAccountPasswordGroupRole(account, passwordGroup);
-        if(!hasAccountRoles)
-        {
-            throw new AccountPasswordGroupRolesInconsistencyException();
-        }
+        await ThrowIfAccountHasNotPasswordGroupRoles(account, passwordGroup);
 
         var passwordDtos = _mapper.Map<IEnumerable<PasswordDto>>(passwordGroup.Passwords);
         return passwordDtos;
@@ -152,5 +124,30 @@ public class PasswordGroupService : IPasswordGroupService
             throw new PasswordGroupNotFoundException();
         }
         return passwordGroup;
+    }
+
+    private async Task<Account> CheckIfAccountExistsAndThrowIfAdmin(Guid accountId)
+    {
+        var account = await _accountRepository.GetByIdAsync(accountId);
+        if(account is null)
+        {
+            throw new AccountNotFoundException();
+        }
+    
+        if(account.IsAdmin)
+        {
+            throw new AdminAccountNotAllowedException();
+        }
+
+        return account;
+    }
+
+    private async Task ThrowIfAccountHasNotPasswordGroupRoles(Account account, PasswordGroup passwordGroup)
+    {
+        var hasAccountRoles = await _passwordGroupHelper.HasAccountPasswordGroupRole(account, passwordGroup);
+        if(!hasAccountRoles)
+        {
+            throw new AccountPasswordGroupRolesInconsistencyException();
+        }
     }
 }

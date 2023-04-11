@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 
 using PasswordManager.Application.Dtos;
+using PasswordManager.Application.Extensions;
+using PasswordManager.Application.Validators;
 using PasswordManager.Domain.Entities;
 using PasswordManager.Domain.Exceptions;
 using PasswordManager.Domain.Repositories;
@@ -37,7 +39,7 @@ public class MainPasswordGroupService : IMainPasswordGroupService
         _mapper = mapper;
     }
 
-    public async Task AddAccessRoleToMainPasswordGroup(Guid mainPasswordGroupId, RoleDto roleDto, Guid accountId)
+    public async Task AddAccessRoleToMainPasswordGroup(Guid mainPasswordGroupId, Guid roleId, Guid accountId)
     {
         var account = await CheckAdminAccount(accountId);
 
@@ -47,7 +49,7 @@ public class MainPasswordGroupService : IMainPasswordGroupService
             throw new PasswordGroupNotFoundException();
         }
 
-        var role = await _roleRepository.GetByIdAsync(roleDto.Id);
+        var role = await _roleRepository.GetByIdAsync(roleId);
         if(role is null)
         {
             throw new RoleNotFoundException();
@@ -62,9 +64,12 @@ public class MainPasswordGroupService : IMainPasswordGroupService
     {
         var existingCreator = await CheckAdminAccount(accountId);
 
+        var validator = new PasswordGroupDtoValidator();
+        await validator.ValidateAndThrowValidationProcessExceptionAsync(dto);
+
         var passwords = _mapper.Map<List<Password>>(dto.Passwords);
         var accessRoles = _mapper.Map<List<Role>>(dto.AccessRoles);
-        var passwordGroup = PasswordGroup.CreateMainPasswordGroup(dto.Name, passwords, accessRoles, existingCreator);
+        var passwordGroup = PasswordGroup.CreateMainPasswordGroup(dto.Id, dto.Name, passwords, accessRoles, existingCreator);
 
         await _passwordGroupRepository.CreateOneAsync(passwordGroup);
     }
@@ -83,17 +88,17 @@ public class MainPasswordGroupService : IMainPasswordGroupService
         return model;
     }
 
-    public async Task RemoveAccessRoleFromMainPasswordGroup(PasswordGroupDto mainDto, RoleDto roleDto, Guid accountId)
+    public async Task RemoveAccessRoleFromMainPasswordGroup(Guid mainPasswordGroupId, Guid roleId, Guid accountId)
     {
         var account = await CheckAdminAccount(accountId);
 
-        var passwordGroup = await _passwordGroupRepository.GetMainPasswordGroupByIdAsync(mainDto.Id);
+        var passwordGroup = await _passwordGroupRepository.GetMainPasswordGroupByIdAsync(mainPasswordGroupId);
         if(passwordGroup is null)
         {
             throw new PasswordGroupNotFoundException();
         }
 
-        var role = await _roleRepository.GetByIdAsync(roleDto.Id);
+        var role = await _roleRepository.GetByIdAsync(roleId);
         if(role is null)
         {
             throw new RoleNotFoundException();

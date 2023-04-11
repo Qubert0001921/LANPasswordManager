@@ -11,8 +11,8 @@ public interface IMainPasswordGroupService
 {
     Task CreateMainPasswordGroup(PasswordGroupDto dto, Guid accountId);
     Task RemoveMainPasswordGroup(Guid passwordGroupId, Guid accountId);
-    Task AddAccessRoleToMainPasswordGroup(Guid mainPasswordGroupId, RoleDto roleDto, Guid accountId);
-    Task RemoveAccessRoleFromMainPasswordGroup(PasswordGroupDto mainDto, RoleDto roleDto, Guid accountId);
+    Task AddAccessRoleToMainPasswordGroup(Guid mainPasswordGroupId, Guid roleId, Guid accountId);
+    Task RemoveAccessRoleFromMainPasswordGroup(Guid mainPasswordGroupId, Guid roleId, Guid accountId);
     Task<PasswordGroupDto?> GetMainPasswordGroupById(Guid id);
     Task<IEnumerable<PasswordGroupDto>> GetAllMainPasswordGroups();
 }

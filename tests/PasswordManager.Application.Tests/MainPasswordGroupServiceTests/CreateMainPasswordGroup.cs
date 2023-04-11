@@ -69,4 +69,38 @@ public class CreateMainPasswordGroup : BaseMainPasswordGroupServiceTests
         await Assert.ThrowsAsync<AdminPermissionRequiredException>(async () => await Sut.CreateMainPasswordGroup(passwordGroupDto, userId));
         PasswordGroupRepoMock.Verify(x => x.CreateOneAsync(It.IsAny<PasswordGroup>()), Times.Never);
     }
+
+    [Theory]
+    [InlineData("", "'Name' musn't be empty")]
+    [InlineData(")(&030958252)", "'Name' contains invalid characters")]
+    [InlineData(null, "'Name' musn't be empty")]
+    [InlineData("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", "Length of 'Name' is invalid")]
+    [InlineData("w", "Length of 'Name' is invalid")]
+    public async Task ShouldThrowErrorAndNotCreate_WhenDataIsInvalid(string name, string message)
+    {
+        var admin = Utils.GetValidAdmin();
+        var adminId = admin.Id;
+
+        var passwordGroupId = Guid.NewGuid();
+        var passwordGroupDto = new PasswordGroupDto()
+        {
+            Id = passwordGroupId,
+            AccessRoles = new List<RoleDto>()
+            {
+                new RoleDto()
+            },
+            Name = name,
+            ParentPasswordGroupId = Guid.Empty,
+            PasswordGroupType = PasswordGroupType.Main,
+            Passwords = new List<PasswordDto>()
+        };
+
+        AccountRepoMock.Setup(x => x.GetByIdAsync(adminId))
+            .ReturnsAsync(admin);
+
+        var ex = await Assert.ThrowsAsync<ValidationProcessException>(async () => await Sut.CreateMainPasswordGroup(passwordGroupDto, adminId));
+        Assert.Equal(message, ex.Errors.First().Message);
+
+        PasswordGroupRepoMock.Verify(x => x.CreateOneAsync(It.IsAny<PasswordGroup>()), Times.Never);
+    }
 }

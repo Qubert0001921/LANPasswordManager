@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using PasswordManager.Domain.Exceptions;
+
 namespace PasswordManager.Domain.Entities;
 
 public class PasswordGroup
 {
-    public PasswordGroup(PasswordGroupType passwordGroupType, string name, List<Role> accessRoles, List<Password> passwords, PasswordGroup? parentPasswordGroup)
+    public PasswordGroup(Guid id, PasswordGroupType passwordGroupType, string name, List<Role> accessRoles, List<Password> passwords, PasswordGroup? parentPasswordGroup)
     {
+        Id = id;
         Name = name;
         _accessRoles = accessRoles;
         ParentPasswordGroup = parentPasswordGroup;
@@ -16,29 +19,29 @@ public class PasswordGroup
         PasswordGroupType = passwordGroupType;
     }
 
-    public static PasswordGroup CreateMainPasswordGroup(string name, List<Password> passwords, List<Role> accessRoles, Account creator)
+    public static PasswordGroup CreateMainPasswordGroup(Guid id, string name, List<Password> passwords, List<Role> accessRoles, Account creator)
     {
         if(!creator.IsAdmin)
         {
-            throw new Exception("Only admin account can create main password group");
+            throw new AdminPermissionRequiredException();
         }
 
         if(!accessRoles.Any())
         {
-            throw new Exception("Main password group must have at least one role assigned");
+            throw new MainPasswordGroupException("Main password group must have at least one role assigned");
         }
 
-        return new PasswordGroup(PasswordGroupType.Main, name, accessRoles, passwords, null);
+        return new PasswordGroup(id, PasswordGroupType.Main, name, accessRoles, passwords, null);
     }
 
-    public static PasswordGroup CreateChildPasswordGroup(string name, List<Password> passwords, PasswordGroup parentPasswordGroup)
+    public static PasswordGroup CreateChildPasswordGroup(Guid id, string name, List<Password> passwords, PasswordGroup parentPasswordGroup)
     {
         if(parentPasswordGroup is null)
         {
-            throw new Exception("Child password group must have a parent");
+            throw new ChildPasswordGroupException("Child password group must have a parent");
         }
 
-        return new PasswordGroup(PasswordGroupType.Child, name, new List<Role>(), passwords, parentPasswordGroup);
+        return new PasswordGroup(id, PasswordGroupType.Child, name, new List<Role>(), passwords, parentPasswordGroup);
     }
 
     public Guid Id { get; private init; }
@@ -54,12 +57,12 @@ public class PasswordGroup
     {
         if(PasswordGroupType == PasswordGroupType.Main)
         {
-            throw new Exception("Cannot move main password group");
+            throw new ChildPasswordGroupException("Cannot move main password group");
         }
 
         if(Id == parent.Id)
         {
-            throw new Exception("Cannot move password group into itself");
+            throw new ChildPasswordGroupException("Cannot move password group into itself");
         }
 
         ParentPasswordGroup = parent;
@@ -79,7 +82,7 @@ public class PasswordGroup
     {
         if(PasswordGroupType == PasswordGroupType.Child)
         {
-            throw new Exception("Cannot add access role to child password group");
+            throw new MainPasswordGroupException("Cannot add access role to child password group");
         }
         _accessRoles.Add(acessRole);
     }
@@ -88,7 +91,7 @@ public class PasswordGroup
     {
         if(PasswordGroupType == PasswordGroupType.Child)
         {
-            throw new Exception("Cannot remove access role from child password group");
+            throw new MainPasswordGroupException("Cannot remove access role from child password group");
         }
         _accessRoles.Remove(accessRole);
     }

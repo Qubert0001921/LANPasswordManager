@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 
 using PasswordManager.Application.Dtos;
+using PasswordManager.Application.Extensions;
 using PasswordManager.Application.Services.Accounts;
+using PasswordManager.Application.Validators;
 using PasswordManager.Domain.Entities;
 using PasswordManager.Domain.Exceptions;
 using PasswordManager.Domain.Repositories;
@@ -20,7 +22,6 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
     private readonly IPasswordRepository _passwordRepository;
     private readonly IPasswordGroupHelperService _passwordGroupHelper;
     private readonly IPasswordGroupService _passwordGroupService;
-    private readonly IAccountHelperService _accountHelperService;
     private readonly IMapper _mapper;
 
     public ChildPasswordGroupService(
@@ -29,7 +30,6 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
         IPasswordRepository passwordRepository,
         IPasswordGroupHelperService passwordGroupHelperService,
         IPasswordGroupService passwordGroupService,
-        IAccountHelperService accountHelperService,
         IMapper mapper)
     {
         _passwordGroupRepository = passwordGroupRepository;
@@ -37,37 +37,23 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
         _passwordRepository = passwordRepository;
         _passwordGroupHelper = passwordGroupHelperService;
         _passwordGroupService = passwordGroupService;
-        _accountHelperService = accountHelperService;
         _mapper = mapper;
     }
 
-    public async Task CreateChildPasswordGroup(PasswordGroupDto dto, AccountDto creator)
+    public async Task CreateChildPasswordGroup(PasswordGroupDto dto, Guid accountId)
     {
-        var parentPasswordGroup = await _passwordGroupRepository.GetByIdAsync(dto.ParentPasswordGroupId);
+        var validator = new PasswordGroupDtoValidator();
+        await validator.ValidateAndThrowValidationProcessExceptionAsync(dto);
 
-        if(parentPasswordGroup is null)
-        {
-            throw new Exception("Assigned parent password group doesn't exist");
-        }
+        var parentPasswordGroup = await CheckIfParentPasswordGroupExists(dto.ParentPasswordGroupId);
 
-        var account = await _accountRepository.GetByIdAsync(creator.Id);
-        if(account is null)
-        {
-            throw new Exception("Account doesn't exist");
-        }
-
-        if(!account.IsAdmin)
-        {
-            var hasAccessRole = await _passwordGroupHelper.HasAccountPasswordGroupRole(account, parentPasswordGroup); 
-
-            if(!hasAccessRole)
-            {
-                throw new Exception("Cannot create child password group because user account doesn't have appropriate role");
-            }
-        }      
+        var account = await CheckIfAccountExists(accountId);
+  
+        await CheckIfNotAdminAndThrowIfRolesDoesNotMatch(account, parentPasswordGroup); 
 
         var passwords = _mapper.Map<List<Password>>(dto.Passwords);
         var childPasswordGroup = PasswordGroup.CreateChildPasswordGroup(
+            dto.Id,
             dto.Name,
             passwords,
             parentPasswordGroup
@@ -93,41 +79,29 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
         return model;
     }
 
-    public async Task MoveChildPasswordGroup(PasswordGroupDto childDto, PasswordGroupDto parentDto, AccountDto accountDto)
+    public async Task MoveChildPasswordGroup(Guid childPasswordGroupId, Guid newParentPasswordGroupId, Guid accountId)
     {
-        var account = await _accountHelperService.CheckIfAccountExists(accountDto.Id);
+        var account = await CheckIfAccountExists(accountId);
 
-        var existingChild = await _passwordGroupRepository.GetChildPasswordGroupByIdAsync(childDto.Id);
+        var existingChild = await _passwordGroupRepository.GetChildPasswordGroupByIdAsync(childPasswordGroupId);
 
         if(existingChild is null)
         {
             throw new PasswordGroupNotFoundException();
         }
 
-        var existingParent = await _passwordGroupRepository.GetByIdAsync(parentDto.Id);
+        var existingParent = await CheckIfParentPasswordGroupExists(newParentPasswordGroupId);
 
-        if(existingParent is null)
-        {
-            throw new ParentPasswordGroupNotFoundException();
-        }
-
-        if(!account.IsAdmin)
-        {
-            var hasAccountRoles = await _passwordGroupHelper.HasAccountPasswordGroupRole(account, existingParent);
-            if(!hasAccountRoles)
-            {
-                throw new AccountPasswordGroupRolesInconsistencyException();
-            }
-        }
+        await CheckIfNotAdminAndThrowIfRolesDoesNotMatch(account, existingParent);
 
         existingChild.MovePasswordGroup(existingParent);
 
         await _passwordGroupRepository.UpdateOneAsync(existingChild);
     }
 
-    public async Task RemoveChildPasswordGroup(PasswordGroupDto dto)
+    public async Task RemoveChildPasswordGroup(Guid passwordGroupId)
     {
-        var childPasswordGroup = await _passwordGroupRepository.GetChildPasswordGroupByIdAsync(dto.Id);
+        var childPasswordGroup = await _passwordGroupRepository.GetChildPasswordGroupByIdAsync(passwordGroupId);
         if(childPasswordGroup is null)
         {
             throw new PasswordGroupNotFoundException();
@@ -146,5 +120,41 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
         // Removing the password group
         await _passwordGroupRepository.RemoveOneByIdAsync(childPasswordGroup.Id);
 
+    }
+
+    private async Task CheckIfNotAdminAndThrowIfRolesDoesNotMatch(Account account, PasswordGroup passwordGroup)
+    {
+        if(!account.IsAdmin)
+        {
+            var hasAccessRole = await _passwordGroupHelper.HasAccountPasswordGroupRole(account, passwordGroup); 
+
+            if(!hasAccessRole)
+            {
+                throw new AccountPasswordGroupRolesInconsistencyException();
+            }
+        } 
+    }
+
+    private async Task<Account> CheckIfAccountExists(Guid accountId)
+    {
+        var account = await _accountRepository.GetByIdAsync(accountId);
+        if(account is null)
+        {
+            throw new AccountNotFoundException();
+        }
+
+        return account;
+    }
+
+    private async Task<PasswordGroup> CheckIfParentPasswordGroupExists(Guid parentPasswordGroupId)
+    {
+        var parent = await _passwordGroupRepository.GetByIdAsync(parentPasswordGroupId);
+
+        if(parent is null)
+        {
+            throw new ParentPasswordGroupNotFoundException();
+        }
+
+        return parent;
     }
 }

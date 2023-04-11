@@ -45,6 +45,7 @@ public static class Utils
     public static PasswordGroup GetValidMainPasswordGroup()
     {
         return PasswordGroup.CreateMainPasswordGroup(
+            Guid.NewGuid(),
             "PasswordGroup",
             new List<Password>()
             {
@@ -63,6 +64,7 @@ public static class Utils
     public static PasswordGroup GetValidChildPasswordGroup()
     {
         return PasswordGroup.CreateChildPasswordGroup(
+            Guid.NewGuid(),
             "PasswordGroup",
             new List<Password>(),
             Utils.GetValidMainPasswordGroup()
