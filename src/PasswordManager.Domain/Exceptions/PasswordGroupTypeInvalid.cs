@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace PasswordManager.Domain.Exceptions;
 
-public class ChildPasswordGroupException : Exception
+public class PasswordGroupTypeInvalidException : Exception
 {
-    public ChildPasswordGroupException(string msg): base(msg)
+    public PasswordGroupTypeInvalidException() : base("Password group type is invalid")
     {
         
     }

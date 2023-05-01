@@ -43,11 +43,7 @@ public class MainPasswordGroupService : IMainPasswordGroupService
     {
         var account = await CheckAdminAccount(accountId);
 
-        var passwordGroup = await _passwordGroupRepository.GetMainPasswordGroupByIdAsync(mainPasswordGroupId);
-        if(passwordGroup is null)
-        {
-            throw new PasswordGroupNotFoundException();
-        }
+        var passwordGroup = await _passwordGroupHelper.GetAndValidPasswordGroup(mainPasswordGroupId, PasswordGroupType.Main);
 
         var role = await _roleRepository.GetByIdAsync(roleId);
         if(role is null)
@@ -64,7 +60,7 @@ public class MainPasswordGroupService : IMainPasswordGroupService
     {
         var existingCreator = await CheckAdminAccount(accountId);
 
-        var validator = new PasswordGroupDtoValidator();
+        var validator = new MainPasswordGroupDtoValidator();
         await validator.ValidateAndThrowValidationProcessExceptionAsync(dto);
 
         var passwords = _mapper.Map<List<Password>>(dto.Passwords);
@@ -83,7 +79,7 @@ public class MainPasswordGroupService : IMainPasswordGroupService
 
     public async Task<PasswordGroupDto?> GetMainPasswordGroupById(Guid id)
     {
-        var passwordGroup = await _passwordGroupRepository.GetMainPasswordGroupByIdAsync(id);
+        var passwordGroup = await _passwordGroupHelper.GetAndValidPasswordGroup(id, PasswordGroupType.Main);
         var model = _mapper.Map<PasswordGroupDto>(passwordGroup);
         return model;
     }
@@ -92,11 +88,7 @@ public class MainPasswordGroupService : IMainPasswordGroupService
     {
         var account = await CheckAdminAccount(accountId);
 
-        var passwordGroup = await _passwordGroupRepository.GetMainPasswordGroupByIdAsync(mainPasswordGroupId);
-        if(passwordGroup is null)
-        {
-            throw new PasswordGroupNotFoundException();
-        }
+        var passwordGroup = await _passwordGroupHelper.GetAndValidPasswordGroup(mainPasswordGroupId, PasswordGroupType.Main);
 
         var role = await _roleRepository.GetByIdAsync(roleId);
         if(role is null)
@@ -113,11 +105,7 @@ public class MainPasswordGroupService : IMainPasswordGroupService
     {
         var account = await CheckAdminAccount(accountId);
 
-        var passwordGroup = await _passwordGroupRepository.GetMainPasswordGroupByIdAsync(passwordGroupId);
-        if(passwordGroup is null)
-        {
-            throw new PasswordGroupNotFoundException();
-        }
+        var passwordGroup = await _passwordGroupHelper.GetAndValidPasswordGroup(passwordGroupId, PasswordGroupType.Main);
 
         var allChildren = await _passwordGroupHelper.GetAllChildrenOfPasswordGroup(passwordGroup);
         var allChildrenIds = allChildren.Select(child => child.Id);

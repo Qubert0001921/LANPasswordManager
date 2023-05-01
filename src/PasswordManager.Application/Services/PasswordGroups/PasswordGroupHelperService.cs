@@ -39,7 +39,7 @@ public class PasswordGroupHelperService : IPasswordGroupHelperService
     {
         var allChildren = (await _passwordGroupRepository.GetChildrenOfPasswordGroupAsync(passwordGroup)).ToList();
 
-        foreach (var child in allChildren)
+        foreach (var child in allChildren.ToList())
         {
             var childrenOfChild = await GetAllChildrenOfPasswordGroup(child);
             allChildren.AddRange(childrenOfChild);
@@ -63,6 +63,22 @@ public class PasswordGroupHelperService : IPasswordGroupHelperService
         }
 
         return allChildrenPasswordIds;
+    }
+
+    public async Task<PasswordGroup> GetAndValidPasswordGroup(Guid passwordGroupId, PasswordGroupType passwordGroupType)
+    {
+        var passwordGroup = await _passwordGroupRepository.GetByIdAsync(passwordGroupId);
+        if(passwordGroup is null)
+        {
+            throw new PasswordGroupNotFoundException();
+        }
+
+        if(passwordGroup.PasswordGroupType != passwordGroupType)
+        {
+            throw new PasswordGroupTypeInvalidException();
+        }
+
+        return passwordGroup;
     }
 
     public async Task<bool> HasAccountPasswordGroupRole(Account account, PasswordGroup passwordGroup)

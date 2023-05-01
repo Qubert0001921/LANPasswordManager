@@ -15,4 +15,5 @@ public interface IPasswordGroupHelperService
     IEnumerable<Guid> GetAllPasswordIdsOfPasswordGroup(PasswordGroup passwordGroup, IEnumerable<PasswordGroup> childrenPasswordGroups);
 
     Task<bool> HasAccountPasswordGroupRole(Account account, PasswordGroup passwordGroup);
+    Task<PasswordGroup> GetAndValidPasswordGroup(Guid passwordGroupId, PasswordGroupType passwordGroupType);
 }

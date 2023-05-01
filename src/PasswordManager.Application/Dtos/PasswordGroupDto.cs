@@ -14,5 +14,4 @@ public class PasswordGroupDto
     public List<RoleDto> AccessRoles { get;  set; }
     public List<PasswordDto> Passwords { get; set; }
     public Guid ParentPasswordGroupId { get;  set; }
-    public PasswordGroupType PasswordGroupType { get; set; }
 }

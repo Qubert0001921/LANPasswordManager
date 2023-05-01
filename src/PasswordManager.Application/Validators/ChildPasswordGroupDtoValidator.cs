@@ -12,9 +12,9 @@ using PasswordManager.Domain.Entities;
 
 namespace PasswordManager.Application.Validators;
 
-public class PasswordGroupDtoValidator : AbstractValidator<PasswordGroupDto>
+public class ChildPasswordGroupDtoValidator : AbstractValidator<PasswordGroupDto>
 {
-    public PasswordGroupDtoValidator()
+    public ChildPasswordGroupDtoValidator()
     {
         RuleFor(x => x.Name)
             .Cascade(CascadeMode.Stop)
@@ -23,12 +23,6 @@ public class PasswordGroupDtoValidator : AbstractValidator<PasswordGroupDto>
             .Length(2, 50).WithMessage("Length of '{PropertyName}' is invalid")
             .Must(SharedValidation.BeAValidName).WithMessage("'{PropertyName}' contains invalid characters");
 
-        RuleFor(x => x.AccessRoles)
-            .Cascade(CascadeMode.Stop)
-            .NotNull().WithMessage("'{PropertyName}' musn't be empty")
-            .Must(SharedValidation.CountBeGreaterThanZero).WithMessage("'{PropertyName}' must has at least one role")
-            .When(x => x.PasswordGroupType == PasswordGroupType.Main);
-
         RuleFor(x => x.Passwords)
             .NotNull().WithMessage("'{PropertyName}' musn't be empty");
 
@@ -36,7 +30,6 @@ public class PasswordGroupDtoValidator : AbstractValidator<PasswordGroupDto>
             .SetValidator(new PasswordDtoValidator());
 
         RuleFor(x => x.ParentPasswordGroupId)
-            .Must(x => x != Guid.Empty).WithMessage("'{PropertyName}' musn't be empty guid")
-            .When(x => x.PasswordGroupType == PasswordGroupType.Child);
+            .Must(x => x != Guid.Empty).WithMessage("'{PropertyName}' musn't be empty guid");
     }
 }

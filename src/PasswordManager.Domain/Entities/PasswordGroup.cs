@@ -28,7 +28,7 @@ public class PasswordGroup
 
         if(!accessRoles.Any())
         {
-            throw new MainPasswordGroupException("Main password group must have at least one role assigned");
+            throw new PasswordGroupException("Main password group must have at least one role assigned");
         }
 
         return new PasswordGroup(id, PasswordGroupType.Main, name, accessRoles, passwords, null);
@@ -38,7 +38,7 @@ public class PasswordGroup
     {
         if(parentPasswordGroup is null)
         {
-            throw new ChildPasswordGroupException("Child password group must have a parent");
+            throw new PasswordGroupException("Child password group must have a parent");
         }
 
         return new PasswordGroup(id, PasswordGroupType.Child, name, new List<Role>(), passwords, parentPasswordGroup);
@@ -57,12 +57,12 @@ public class PasswordGroup
     {
         if(PasswordGroupType == PasswordGroupType.Main)
         {
-            throw new ChildPasswordGroupException("Cannot move main password group");
+            throw new PasswordGroupException("Cannot move main password group");
         }
 
         if(Id == parent.Id)
         {
-            throw new ChildPasswordGroupException("Cannot move password group into itself");
+            throw new PasswordGroupException("Cannot move password group into itself");
         }
 
         ParentPasswordGroup = parent;
@@ -82,7 +82,7 @@ public class PasswordGroup
     {
         if(PasswordGroupType == PasswordGroupType.Child)
         {
-            throw new MainPasswordGroupException("Cannot add access role to child password group");
+            throw new PasswordGroupException("Cannot add access role to child password group");
         }
         _accessRoles.Add(acessRole);
     }
@@ -91,7 +91,7 @@ public class PasswordGroup
     {
         if(PasswordGroupType == PasswordGroupType.Child)
         {
-            throw new MainPasswordGroupException("Cannot remove access role from child password group");
+            throw new PasswordGroupException("Cannot remove access role from child password group");
         }
         _accessRoles.Remove(accessRole);
     }

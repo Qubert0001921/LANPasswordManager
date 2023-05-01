@@ -14,7 +14,4 @@ public interface IPasswordGroupRepository : IBaseRepository<PasswordGroup, Guid>
 
     Task<IEnumerable<PasswordGroup>> GetAllChildPasswordGroupsAsync();
     Task<IEnumerable<PasswordGroup>> GetAllMainPasswordGroupsAsync();
-    
-    Task<PasswordGroup> GetChildPasswordGroupByIdAsync(Guid id);
-    Task<PasswordGroup> GetMainPasswordGroupByIdAsync(Guid id);
 }

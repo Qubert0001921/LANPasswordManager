@@ -21,7 +21,6 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
     private readonly IAccountRepository _accountRepository;
     private readonly IPasswordRepository _passwordRepository;
     private readonly IPasswordGroupHelperService _passwordGroupHelper;
-    private readonly IPasswordGroupService _passwordGroupService;
     private readonly IMapper _mapper;
 
     public ChildPasswordGroupService(
@@ -29,20 +28,18 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
         IAccountRepository accountRepository,
         IPasswordRepository passwordRepository,
         IPasswordGroupHelperService passwordGroupHelperService,
-        IPasswordGroupService passwordGroupService,
         IMapper mapper)
     {
         _passwordGroupRepository = passwordGroupRepository;
         _accountRepository = accountRepository;
         _passwordRepository = passwordRepository;
         _passwordGroupHelper = passwordGroupHelperService;
-        _passwordGroupService = passwordGroupService;
         _mapper = mapper;
     }
 
     public async Task CreateChildPasswordGroup(PasswordGroupDto dto, Guid accountId)
     {
-        var validator = new PasswordGroupDtoValidator();
+        var validator = new ChildPasswordGroupDtoValidator();
         await validator.ValidateAndThrowValidationProcessExceptionAsync(dto);
 
         var parentPasswordGroup = await CheckIfParentPasswordGroupExists(dto.ParentPasswordGroupId);
@@ -74,7 +71,7 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
     // Is it necessary??
     public async Task<PasswordGroupDto> GetChildPasswordGroupById(Guid id)
     {
-        var passwordGroup = await _passwordGroupRepository.GetChildPasswordGroupByIdAsync(id);
+        var passwordGroup = await _passwordGroupHelper.GetAndValidPasswordGroup(id, PasswordGroupType.Child);
         var model = _mapper.Map<PasswordGroupDto>(passwordGroup);
         return model;
     }
@@ -83,16 +80,13 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
     {
         var account = await CheckIfAccountExists(accountId);
 
-        var existingChild = await _passwordGroupRepository.GetChildPasswordGroupByIdAsync(childPasswordGroupId);
+        var existingChild = await _passwordGroupHelper.GetAndValidPasswordGroup(childPasswordGroupId, PasswordGroupType.Child);
 
-        if(existingChild is null)
-        {
-            throw new PasswordGroupNotFoundException();
-        }
+        await CheckIfNotAdminAndThrowIfRolesDoesNotMatch(account, existingChild); // check roles of child
 
         var existingParent = await CheckIfParentPasswordGroupExists(newParentPasswordGroupId);
 
-        await CheckIfNotAdminAndThrowIfRolesDoesNotMatch(account, existingParent);
+        await CheckIfNotAdminAndThrowIfRolesDoesNotMatch(account, existingParent); // check roles of new parent
 
         existingChild.MovePasswordGroup(existingParent);
 
@@ -101,11 +95,7 @@ public class ChildPasswordGroupService : IChildPasswordGroupService
 
     public async Task RemoveChildPasswordGroup(Guid passwordGroupId)
     {
-        var childPasswordGroup = await _passwordGroupRepository.GetChildPasswordGroupByIdAsync(passwordGroupId);
-        if(childPasswordGroup is null)
-        {
-            throw new PasswordGroupNotFoundException();
-        }
+        var childPasswordGroup = await _passwordGroupHelper.GetAndValidPasswordGroup(passwordGroupId, PasswordGroupType.Child);
 
         var allChildren = await _passwordGroupHelper.GetAllChildrenOfPasswordGroup(childPasswordGroup);
         var allChildrenIds = allChildren.Select(child => child.Id);
