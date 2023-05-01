@@ -8,6 +8,7 @@ using AutoMapper;
 using Moq;
 
 using PasswordManager.Application.Services.PasswordGroups;
+using PasswordManager.Domain.Entities;
 using PasswordManager.Domain.Repositories;
 
 namespace PasswordManager.Application.Tests.ChildPasswordGroupServiceTests;
@@ -18,7 +19,6 @@ public abstract class BaseChildPasswordGroupServiceTests
     protected readonly Mock<IAccountRepository> AccountRepoMock = new Mock<IAccountRepository>();
     protected readonly Mock<IPasswordRepository> PasswordRepoMock = new Mock<IPasswordRepository>();
     protected readonly Mock<IPasswordGroupHelperService> PasswordGroupHelperMock = new Mock<IPasswordGroupHelperService>();
-    protected readonly Mock<IPasswordGroupService> PasswordGroupServiceMock = new Mock<IPasswordGroupService>();
     protected readonly IChildPasswordGroupService Sut;
 
     public BaseChildPasswordGroupServiceTests()
@@ -31,8 +31,31 @@ public abstract class BaseChildPasswordGroupServiceTests
             accountRepository: AccountRepoMock.Object,
             passwordRepository:  PasswordRepoMock.Object,
             passwordGroupHelperService: PasswordGroupHelperMock.Object,
-            mapper: mapper,
-            passwordGroupService: PasswordGroupServiceMock.Object
+            mapper: mapper
         );
+    }
+
+    protected void MockDoRolesMatch(bool match, Account account, PasswordGroup passwordGroup)
+    {
+        PasswordGroupHelperMock.Setup(x => x.HasAccountPasswordGroupRole(account, passwordGroup))
+            .ReturnsAsync(match);
+    }
+
+    protected void MockGetValidPasswordGroup(PasswordGroup passwordGroup, Guid id)
+    {
+        PasswordGroupHelperMock.Setup(x => x.GetAndValidPasswordGroup(id, PasswordGroupType.Child))
+            .ReturnsAsync(passwordGroup);
+    }
+
+    protected void MockGetAccount(Account? returns, Guid id)
+    {
+        AccountRepoMock.Setup(x => x.GetByIdAsync(id))
+            .ReturnsAsync(returns);
+    }
+
+    protected void MockGetPasswordGroup(PasswordGroup? returns, Guid id)
+    {
+        PasswordGroupRepoMock.Setup(x => x.GetByIdAsync(id))
+            .ReturnsAsync(returns);
     }
 }

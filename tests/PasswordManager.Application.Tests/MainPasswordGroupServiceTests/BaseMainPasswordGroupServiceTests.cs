@@ -35,4 +35,9 @@ public abstract class BaseMainPasswordGroupServiceTests
             mapper: mapper
         );
     }
+
+    protected void MockGetAndValidPasswordGroup()
+    {
+        
+    }
 }

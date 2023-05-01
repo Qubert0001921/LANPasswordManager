@@ -71,8 +71,21 @@ public static class Utils
         );
     }
 
+    public static PasswordGroup GetValidChildPasswordGroup(Guid id)
+    {
+        return PasswordGroup.CreateChildPasswordGroup(
+            id,
+            "PasswordGroup",
+            new List<Password>(),
+            Utils.GetValidMainPasswordGroup()
+        );
+    }
+
     public static Role GetValidRole()
     {
         return new Role(Guid.NewGuid(), "Some role");
     }
+
+    public static IEnumerable<PasswordGroup> GetValidChildPasswordGroupList(int count=5) 
+        => Enumerable.Repeat<PasswordGroup>(GetValidChildPasswordGroup(), count);
 }

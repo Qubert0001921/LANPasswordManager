@@ -22,7 +22,7 @@ public class RemoveMainPasswordGroup : BaseMainPasswordGroupServiceTests
         AccountRepoMock.Setup(x => x.GetByIdAsync(admin.Id))
             .ReturnsAsync(admin);
 
-        PasswordGroupRepoMock.Setup(x => x.GetMainPasswordGroupByIdAsync(passwordGroup.Id))
+        PasswordGroupHelperMock.Setup(x => x.GetAndValidPasswordGroup(passwordGroup.Id, PasswordGroupType.Main))
             .ReturnsAsync(passwordGroup);
 
         await Sut.RemoveMainPasswordGroup(passwordGroup.Id, admin.Id);
@@ -39,7 +39,7 @@ public class RemoveMainPasswordGroup : BaseMainPasswordGroupServiceTests
         AccountRepoMock.Setup(x => x.GetByIdAsync(user.Id))
             .ReturnsAsync(user);
 
-        PasswordGroupRepoMock.Setup(x => x.GetMainPasswordGroupByIdAsync(passwordGroup.Id))
+        PasswordGroupHelperMock.Setup(x => x.GetAndValidPasswordGroup(passwordGroup.Id, PasswordGroupType.Main))
             .ReturnsAsync(passwordGroup);
 
 
@@ -56,8 +56,8 @@ public class RemoveMainPasswordGroup : BaseMainPasswordGroupServiceTests
         AccountRepoMock.Setup(x => x.GetByIdAsync(admin.Id))
             .ReturnsAsync(admin);
 
-        PasswordGroupRepoMock.Setup(x => x.GetMainPasswordGroupByIdAsync(passwordGroupId))
-            .ReturnsAsync(() => null);
+        PasswordGroupHelperMock.Setup(x => x.GetAndValidPasswordGroup(passwordGroupId, PasswordGroupType.Main))
+            .ThrowsAsync(new PasswordGroupNotFoundException());
 
         await Assert.ThrowsAsync<PasswordGroupNotFoundException>(async () => await Sut.RemoveMainPasswordGroup(passwordGroupId, admin.Id));
         PasswordGroupRepoMock.Verify(x => x.RemoveOneByIdAsync(passwordGroupId), Times.Never);
@@ -80,7 +80,7 @@ public class RemoveMainPasswordGroup : BaseMainPasswordGroupServiceTests
         AccountRepoMock.Setup(x => x.GetByIdAsync(admin.Id))
             .ReturnsAsync(admin);
 
-        PasswordGroupRepoMock.Setup(x => x.GetMainPasswordGroupByIdAsync(passwordGroup.Id))
+        PasswordGroupHelperMock.Setup(x => x.GetAndValidPasswordGroup(passwordGroup.Id, PasswordGroupType.Main))
             .ReturnsAsync(passwordGroup);
 
         PasswordGroupHelperMock.Setup(x => x.GetAllChildrenOfPasswordGroup(passwordGroup))
@@ -103,7 +103,7 @@ public class RemoveMainPasswordGroup : BaseMainPasswordGroupServiceTests
         AccountRepoMock.Setup(x => x.GetByIdAsync(admin.Id))
             .ReturnsAsync(admin);
 
-        PasswordGroupRepoMock.Setup(x => x.GetMainPasswordGroupByIdAsync(passwordGroup.Id))
+        PasswordGroupHelperMock.Setup(x => x.GetAndValidPasswordGroup(passwordGroup.Id, PasswordGroupType.Main))
             .ReturnsAsync(passwordGroup);
 
         PasswordGroupHelperMock.Setup(x => x.GetAllPasswordIdsOfPasswordGroup(passwordGroup, It.IsAny<IEnumerable<PasswordGroup>>()))

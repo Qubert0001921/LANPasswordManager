@@ -20,7 +20,7 @@ public class AddAccessRoleToMainPasswordGroup : BaseMainPasswordGroupServiceTest
         var role = Utils.GetValidRole();
         var admin = Utils.GetValidAdmin();
 
-        PasswordGroupRepoMock.Setup(x => x.GetMainPasswordGroupByIdAsync(passwordGroup.Id))
+        PasswordGroupHelperMock.Setup(x => x.GetAndValidPasswordGroup(passwordGroup.Id, PasswordGroupType.Main))
             .ReturnsAsync(passwordGroup);
 
         AccountRepoMock.Setup(x => x.GetByIdAsync(admin.Id))
@@ -43,7 +43,7 @@ public class AddAccessRoleToMainPasswordGroup : BaseMainPasswordGroupServiceTest
         var roleId = Guid.NewGuid();
         var admin = Utils.GetValidAdmin();
 
-        PasswordGroupRepoMock.Setup(x => x.GetMainPasswordGroupByIdAsync(passwordGroup.Id))
+        PasswordGroupHelperMock.Setup(x => x.GetAndValidPasswordGroup(passwordGroup.Id, PasswordGroupType.Main))
             .ReturnsAsync(passwordGroup);
 
         AccountRepoMock.Setup(x => x.GetByIdAsync(admin.Id))
@@ -64,7 +64,7 @@ public class AddAccessRoleToMainPasswordGroup : BaseMainPasswordGroupServiceTest
         var role = Utils.GetValidRole();
         var user = Utils.GetValidUser();
 
-        PasswordGroupRepoMock.Setup(x => x.GetMainPasswordGroupByIdAsync(passwordGroup.Id))
+        PasswordGroupRepoMock.Setup(x => x.GetByIdAsync(passwordGroup.Id))
             .ReturnsAsync(passwordGroup);
 
         AccountRepoMock.Setup(x => x.GetByIdAsync(user.Id))
@@ -84,8 +84,8 @@ public class AddAccessRoleToMainPasswordGroup : BaseMainPasswordGroupServiceTest
         var role = Utils.GetValidRole();
         var admin = Utils.GetValidAdmin();
 
-        PasswordGroupRepoMock.Setup(x => x.GetMainPasswordGroupByIdAsync(passwordGroupId))
-            .ReturnsAsync(() => null);
+        PasswordGroupHelperMock.Setup(x => x.GetAndValidPasswordGroup(passwordGroupId, PasswordGroupType.Main))
+            .ThrowsAsync(new PasswordGroupNotFoundException());
 
         AccountRepoMock.Setup(x => x.GetByIdAsync(admin.Id))
             .ReturnsAsync(admin);

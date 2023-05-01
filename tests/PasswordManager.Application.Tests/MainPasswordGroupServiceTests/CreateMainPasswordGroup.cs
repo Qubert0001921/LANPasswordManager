@@ -30,7 +30,6 @@ public class CreateMainPasswordGroup : BaseMainPasswordGroupServiceTests
             },
             Name = "passwordgroup",
             ParentPasswordGroupId = Guid.Empty,
-            PasswordGroupType = PasswordGroupType.Main,
             Passwords = new List<PasswordDto>()
         };
 
@@ -59,7 +58,6 @@ public class CreateMainPasswordGroup : BaseMainPasswordGroupServiceTests
             },
             Name = "passwordgroup",
             ParentPasswordGroupId = Guid.Empty,
-            PasswordGroupType = PasswordGroupType.Main,
             Passwords = new List<PasswordDto>()
         };
 
@@ -91,7 +89,6 @@ public class CreateMainPasswordGroup : BaseMainPasswordGroupServiceTests
             },
             Name = name,
             ParentPasswordGroupId = Guid.Empty,
-            PasswordGroupType = PasswordGroupType.Main,
             Passwords = new List<PasswordDto>()
         };
 
