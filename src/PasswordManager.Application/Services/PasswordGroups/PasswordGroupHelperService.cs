@@ -89,7 +89,7 @@ public class PasswordGroupHelperService : IPasswordGroupHelperService
 
         foreach (var role in account.Roles)
         {
-            if(accessRoles.Contains(role))
+            if(accessRoles.Any(x => x.Id == role.Id))
             {
                 hasAccessRole = true;
                 break;

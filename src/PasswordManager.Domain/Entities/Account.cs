@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PasswordManager.Domain.Exceptions;
 
 namespace PasswordManager.Domain.Entities;
 
@@ -62,42 +63,42 @@ public class Account
     private List<Role> _roles;
     public bool IsAdmin { get; private set; }
 
-    // public void AssignRole(Role role, Account account)
-    // {
-    //     if(!account.IsAdmin)
-    //     {
-    //         throw new Exception("Only administrator account can assign role to an account");
-    //     }
+    public void AssignRole(Role role, Account account)
+    {
+        if(!account.IsAdmin)
+        {
+            throw new AdminPermissionRequiredException();
+        }
 
-    //     if(IsAdmin)
-    //     {
-    //         throw new Exception("Cannot assign role to an admin account");
-    //     }
+        if(IsAdmin)
+        {
+            throw new AdminAccountNotAllowedException();
+        }
 
-    //     bool alreadyHasRole = _roles.Where(accountRole => accountRole.Id == role.Id).FirstOrDefault() is not null;
+        bool alreadyHasRole = _roles.Where(accountRole => accountRole.Id == role.Id).FirstOrDefault() is not null;
         
-    //     if(alreadyHasRole) 
-    //     {
-    //         throw new Exception("Cannot assign already assigned role to the user account");
-    //     }
+        if(alreadyHasRole) 
+        {
+            throw new AccountException("Cannot assign already assigned role to the user account");
+        }
 
-    //     _roles.Add(role);
-    // }
+        _roles.Add(role);
+    }
 
-    // public void RemoveRoleAssignment(Role role, Account account)
-    // {
-    //     if(!account.IsAdmin)
-    //     {
-    //         throw new Exception("Only administrator account can remove role assignement from a different account");
-    //     }
+    public void RemoveRoleAssignment(Role role, Account account)
+    {
+        if(!account.IsAdmin)
+        {
+            throw new AdminPermissionRequiredException();
+        }
 
-    //     bool hasRole = _roles.Where(accountRole => accountRole.Id == role.Id).FirstOrDefault() is not null;
+        var roleAtId = _roles.Where(accountRole => accountRole.Id == role.Id).FirstOrDefault();
 
-    //     if(!hasRole)
-    //     {
-    //         throw new Exception("Cannot remove assignment of unassigned role");
-    //     }
+        if(roleAtId is null)
+        {
+            throw new AccountException("Cannot remove assignment of unassigned role");
+        }
 
-    //     _roles.Remove(role);
-    // }
+        _roles.Remove(roleAtId);
+    }
 }

@@ -37,6 +37,34 @@ public static class Utils
         );
     }
 
+    public static Account GetValidAdmin(Guid id)
+    {
+        return Account.CreateAdminAccount(
+            id,
+            "adm_bartlomiej",
+            "bartl",
+            "lomiej",
+            "bartek@example.com",
+            "passwordsuper212131@@@@"
+        );
+    }
+
+    public static Account GetValidUser(Guid id)
+    {
+        return Account.CreateUserAccount(
+            id,
+            "bartlomiej",
+            "bartl",
+            "lomiej",
+            "bartekd@example.com",
+            "passwordsuper212131@@@@",
+            new List<Role>()
+            {
+                new Role(Guid.NewGuid(), "Rola")
+            }
+        );
+    }
+
     public static Password GetValidPassword()
     {
         return new Password(Guid.NewGuid(), "8yrha98yh(&TGO(#&RT))");

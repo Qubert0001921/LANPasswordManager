@@ -7,9 +7,11 @@ using AutoMapper;
 
 using PasswordManager.Application.Dtos;
 using PasswordManager.Application.Services.Accounts;
+using PasswordManager.Application.Validators;
 using PasswordManager.Domain.Entities;
 using PasswordManager.Domain.Exceptions;
 using PasswordManager.Domain.Repositories;
+using PasswordManager.Application.Extensions;
 
 namespace PasswordManager.Application.Services.PasswordGroups;
 
@@ -42,6 +44,9 @@ public class PasswordGroupService : IPasswordGroupService
         var passwordGroup = await CheckIfPasswordGroupExists(dto.Id);
 
         await ThrowIfAccountHasNotPasswordGroupRoles(account, passwordGroup);
+
+        var validator = new PasswordDtoValidator();
+        await validator.ValidateAndThrowValidationProcessExceptionAsync(passwordDto);
 
         var password = new Password(
             passwordDto.Id, 
